@@ -1,21 +1,22 @@
-import { useState } from 'react';
+'use client'
+
+import React, { useState } from 'react'
 import styles from './WeightList.module.css'
-import { WeightListProps } from './WeightList'
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import AddWeightModal from '../AddWeightModal/AddWeightModal';
-import EntryModal from '../EntryModal/EntryModal';
+import { IWeightList } from '@/app/weight/Weight'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import AddWeightModal from '../AddWeightModal/AddWeightModal'
+import EntryModal from '../EntryModal/EntryModal'
 
-
-const WeightList = ({ weight, hamburger, setHamburger, setWeightChange}: WeightListProps) => {
+const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: IWeightList) => {
   const [addWeightModal, setAddWeightModal] = useState<boolean>(false)
-  let newArray = Array.from({ length: weight.length }, (value, index) => index);
+  let newArray = Array.from({ length: weight.length }, (value, index) => index)
   newArray.reverse()
 
   const openAddWeightModal = () => setAddWeightModal(true)
 
-  const closeAddWeightModal = () => setAddWeightModal(false) 
+  const closeAddWeightModal = () => setAddWeightModal(false)
 
-  const closeEntryModal = (id: number) => { 
+  const closeEntryModal = (id: number) => {
     const temp = [...hamburger]
     temp[id] = false
     setHamburger(temp)
@@ -31,7 +32,9 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange}: WeightL
     <div className={styles.container}>
       <h3>Weight</h3>
       <div className={styles.add_btn_div}>
-        <span className={styles.add_btn} onClick={openAddWeightModal}>+</span>
+        <span className={styles.add_btn} onClick={openAddWeightModal}>
+          +
+        </span>
       </div>
       <div className={styles.list}>
         <div className={styles.list_sub_headings}>
@@ -46,9 +49,17 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange}: WeightL
                 <span className={styles.number}>#{newArray[key] + 1}</span>
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
-                <span><MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)}/></span>
+                <span>
+                  <MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)} />
+                </span>
                 <div className={styles.entry_modal}>
-                  {hamburger[key] && <EntryModal id={value.id} change={setWeightChange} closeModal={closeEntryModal} />}
+                  {hamburger[key] && (
+                    <EntryModal
+                      id={value.id}
+                      change={setWeightChange}
+                      closeModal={closeEntryModal}
+                    />
+                  )}
                 </div>
               </div>
             )
@@ -56,7 +67,9 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange}: WeightL
         </div>
       </div>
 
-      {addWeightModal && <AddWeightModal closeModal={closeAddWeightModal} change={setWeightChange}/>}
+      {addWeightModal && (
+        <AddWeightModal closeModal={closeAddWeightModal} change={setWeightChange} />
+      )}
     </div>
   )
 }

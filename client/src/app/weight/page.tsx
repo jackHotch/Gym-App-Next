@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import styles from './Weight.module.css'
 import { WeightData } from '../globals'
 import axios from 'axios'
-import WeightList from '@/components/isolated/Weight/WeightList/WeightList'
+import WeightList from '@/components/isolated/Weight/WeightList/WeightList.tsx'
 
 const Weight = () => {
   const [weight, setWeight] = useState<WeightData[]>([])
@@ -22,16 +24,14 @@ const Weight = () => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        <WeightList 
-          weight={weight} 
-          hamburger={hamburger} 
-          setHamburger={setHamburger} 
-          setWeightChange={setWeightChange} 
+        <WeightList
+          weight={weight}
+          hamburger={hamburger}
+          setHamburger={setHamburger}
+          setWeightChange={setWeightChange}
         />
 
-        <Chart 
-          weight={weight}
-        />
+        {/* <Chart weight={weight} /> */}
       </div>
     </div>
   )
