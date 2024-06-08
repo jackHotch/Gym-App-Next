@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Weight.module.css'
 import { WeightData } from '../globals'
 import axios from 'axios'

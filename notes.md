@@ -2,6 +2,7 @@
 
 ## Convertion to Next and Typescript
 
+- Fix the click outside to close for the date calendar
 - Keep converting files
 - https://stackoverflow.com/questions/75136806/create-daterangepicker-using-two-mui-x-datepicker
 - https://mui.com/x/api/date-pickers/pickers-day/
