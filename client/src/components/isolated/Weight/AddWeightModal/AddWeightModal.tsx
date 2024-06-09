@@ -22,7 +22,11 @@ const AddWeightModal = ({ closeModal, change }: IAddWeightModal) => {
   function convertDate(date: Date | Dayjs) {
     const newDate = date.toISOString().substring(0, 10)
     const formattedDate =
-      newDate.substring(5, 7) + '/' + newDate.substring(8, 10) + '/' + newDate.substring(0, 4)
+      newDate.substring(5, 7) +
+      '/' +
+      newDate.substring(8, 10) +
+      '/' +
+      newDate.substring(0, 4)
     return formattedDate
   }
 
@@ -34,18 +38,20 @@ const AddWeightModal = ({ closeModal, change }: IAddWeightModal) => {
     setCalendar(!calendar)
   }
 
-  useEffect(() => {
-    let handler = (e: any) => {
-      if (!calendarRef.current.contains(e.target)) {
-        setCalendar(false)
-      }
-    }
-    document.addEventListener('mousedown', handler)
+  // useEffect(() => {
+  //   let handler = (e: any) => {
+  //     if (!calendarRef.current.contains(e.target)) {
+  //       if (e.target.className !== 'date_input') {
+  //         setCalendar(false)
+  //       }
+  //     }
+  //   }
+  //   document.addEventListener('mousedown', handler)
 
-    return () => {
-      document.removeEventListener('mousedown', handler)
-    }
-  })
+  //   return () => {
+  //     document.removeEventListener('mousedown', handler)
+  //   }
+  // })
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -74,22 +80,36 @@ const AddWeightModal = ({ closeModal, change }: IAddWeightModal) => {
               <div className={styles.weight}>
                 <label>Weight: </label>
                 <div className={styles.weight_input}>
-                  <input type='text' placeholder='lbs' value={weight} onChange={updateWeight} />
+                  <input
+                    type='text'
+                    placeholder='lbs'
+                    value={weight}
+                    onChange={updateWeight}
+                  />
                 </div>
               </div>
 
               <div className={styles.date}>
                 <label>Date: </label>
-                <div ref={calendarRef} className={styles.date_input} onClick={toggleCalendar}>
+                <div className={styles.date_input} onClick={toggleCalendar}>
                   <input type='text' value={convertDate(date)} readOnly={true} />
                   <CalendarMonthIcon id={styles.calendar_icon} />
                 </div>
               </div>
-              {calendar && (
-                <div className={styles.calendar_background} onClick={(e) => e.stopPropagation()}>
-                  <DateCalendar value={date} onChange={(newDate: Dayjs) => setDate(newDate)} />
-                </div>
-              )}
+
+              <div ref={calendarRef}>
+                {calendar && (
+                  <div
+                    className={styles.calendar_background}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <DateCalendar
+                      value={date}
+                      onChange={(newDate: Dayjs) => setDate(newDate)}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
             <button type='submit' className={styles.add_btn}>

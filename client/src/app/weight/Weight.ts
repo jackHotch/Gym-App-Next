@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
-import { WeightData } from '../globals'
+import { IWeightData } from '../globals'
 
 export interface IWeightList {
-  weight: WeightData[],
+  weight: IWeightData[],
   hamburger: boolean[],
   setHamburger: Dispatch<SetStateAction<boolean[]>>,
   setWeightChange: Dispatch<SetStateAction<boolean>>
@@ -17,4 +17,8 @@ export interface IEntryModal {
 export interface IAddWeightModal {
   closeModal: () => void,
   change: Dispatch<SetStateAction<boolean>>,
+}
+
+export interface IChart {
+  weight: IWeightData[]
 }

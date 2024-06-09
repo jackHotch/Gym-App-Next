@@ -1,59 +1,59 @@
 import styles from './TestChart.module.css'
+import { IChart } from '@/app/weight/Weight'
 import { Line } from 'react-chartjs-2'
-import { 
-  Chart as ChartJS, 
-  CategoryScale, 
-  LinearScale, 
-  PointElement, 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
   LineElement,
   Tooltip,
-  Title, 
-  Legend
+  Title,
+  Legend,
 } from 'chart.js'
 import { lineChartData } from './FAKEDATA'
 
 ChartJS.register(
-  CategoryScale, 
-  LinearScale, 
-  PointElement, 
+  CategoryScale,
+  LinearScale,
+  PointElement,
   LineElement,
   Tooltip,
-  Title, 
+  Title,
   Legend
 )
 
-const Chart = ({ weight }) => {
-
+const Chart = ({ weight }: IChart) => {
   let labels: string[] = []
   let data: number[] = []
-  
-  weight.map((value, key) => {
+
+  weight.map((value) => {
     labels.push(value.date)
     data.push(value.weight)
   })
 
-  const options = {
+  const options: any = {
     responsive: true,
     plugins: {
       legend: {
-        position: "left"
+        position: 'left',
       },
       title: {
         display: true,
-        text: "Weight"
-      }
-    }
+        text: 'Weight',
+      },
+    },
   }
 
   const chartData = {
     labels: labels,
     datasets: [
       {
-        label: "lbs",
+        label: 'lbs',
         data: data,
-        borderColor: "rgb(58, 143, 234)"
-      }
-    ]
+        borderColor: 'rgb(58, 143, 234)',
+      },
+    ],
   }
 
   return (

@@ -28,6 +28,7 @@
 - List and chart stack vertically when the page width is too small
   - First thought, put chart under list
   - Or put it above like in MyFitnessPal
+- Add loading skeletons
 
 ### WeightList.jsx
 
