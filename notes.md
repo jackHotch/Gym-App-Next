@@ -1,13 +1,14 @@
 # Notes for Gym App
 
-## Convertion to Next and Typescript
-
-- Fix the click outside to close for the date calendar
-- Keep converting files
 - https://stackoverflow.com/questions/75136806/create-daterangepicker-using-two-mui-x-datepicker
 - https://mui.com/x/api/date-pickers/pickers-day/
 - Make modals that pop out from three dots cover the three dots like in the strong app
 - Make the blue color slighly darker, more blue
+
+## Convertion to Next and Typescript
+
+- Make each component have their own module.css file, change EntryModal
+- Finished page.tsx for /record/workout, need to convert all of the isolated components
 
 ## Split
 

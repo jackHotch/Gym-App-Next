@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './AddWeightModal.module.css'
 import { IAddWeightModal } from '@/app/weight/Weight'
-import { FormEvent, ChangeEvent } from '@/app/globals'
+import { FormEvent, TextInputChangeEvent } from '@/app/globals'
 import axios from 'axios'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import CloseIcon from '@mui/icons-material/Close'
@@ -30,7 +30,7 @@ const AddWeightModal = ({ closeModal, change }: IAddWeightModal) => {
     return formattedDate
   }
 
-  function updateWeight(e: ChangeEvent) {
+  function updateWeight(e: TextInputChangeEvent) {
     setWeight(e.target.value)
   }
 
