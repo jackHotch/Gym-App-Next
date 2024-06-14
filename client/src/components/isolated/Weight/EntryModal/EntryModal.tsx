@@ -1,11 +1,11 @@
 'use client'
 
-import styles from '../WeightList/WeightList.module.css'
-import { IEntryModal } from '@/app/weight/Weight.ts'
+import styles from './EntryModal.module.css'
+import { EntryModalProps } from '@/app/weight/Weight.ts'
 import { motion } from 'framer-motion'
 import axios from 'axios'
 
-const EntryModal = ({ id, change, closeModal }: IEntryModal) => {
+const EntryModal = ({ id, change, closeModal }: EntryModalProps) => {
   const deleteEntry = () => {
     axios.delete(`/api/weight/${id}`).then((res) => {
       console.log('Entry Deleted')

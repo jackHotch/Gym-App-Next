@@ -7,8 +7,8 @@
 
 ## Convertion to Next and Typescript
 
-- Make each component have their own module.css file, change EntryModal
-- Finished page.tsx for /record/workout, need to convert all of the isolated components
+- Convert the `/record/workout/finished` page
+- Fix all of the css
 
 ## Split
 
@@ -23,6 +23,11 @@
       - add notes for the exercise
 
 ## Record
+
+### Set.tsx
+
+- Instead of passing in value, changed to value2
+- I think that was an error in react that somehow still worked
 
 ## Weight
 

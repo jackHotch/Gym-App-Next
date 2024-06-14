@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import styles from '../Record.module.css'
 import AddExerciseModal from '@/components/isolated/Record/AddExerciseModal/AddExerciseModal'
 import { IExercises } from '../record.ts'
-import { TextInputChangeEvent, FormEvent, TextAreaChangeEvent } from '@/app/globals'
+import { TextInputChangeEvent, TextAreaChangeEvent, ButtonEvent } from '@/app/globals'
 import Set from '@/components/isolated/Record/Set/Set'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import ExerciseModal from '@/components/isolated/Record/ExerciseModal/ExerciseModal'
 import axios from 'axios'
-import ConfirmationModal from '@/components/isolated/Record/ConfirmationModal/ConfirmationModal.tsx'
-import { useNavigate } from 'react-router-dom'
+import WorkoutConfirmationModal from '@/components/isolated/Record/WorkoutConfirmationModal/WorkoutConfirmationModal.tsx'
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Workout = () => {
@@ -20,7 +20,7 @@ const Workout = () => {
   let arr = new Array(exercises.length).fill(false)
   const [hamburger, setHamburger] = useState<boolean[]>(arr)
   const [displayNote, setDisplayNote] = useState<boolean[]>(arr)
-  const navigate = useNavigate()
+  const router = useRouter()
   const [workoutNumber, setWorkoutNumber] = useState<number>(0)
 
   useEffect(() => {
@@ -52,11 +52,11 @@ const Workout = () => {
     setExercises(temp1)
   }
 
-  function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: ButtonEvent) {
     e.preventDefault()
     axios.post('/api/workout/create', exercises).then((res) => {
       console.log('Workout Created')
-      navigate('/record/workout/finished')
+      router.push('/record/workout/finished')
     })
   }
 
@@ -159,7 +159,7 @@ const Workout = () => {
                         return (
                           <Set
                             key={key2}
-                            value={value}
+                            value={value2}
                             exerciseNumber={key}
                             setNumber={key2}
                             handleChange={handleChange}
@@ -238,7 +238,7 @@ const Workout = () => {
           />
         )}
         {confirmationModal && (
-          <ConfirmationModal
+          <WorkoutConfirmationModal
             setConfirmationModal={setConfirmationModal}
             handleSubmit={handleSubmit}
           />

@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './AddWeightModal.module.css'
-import { IAddWeightModal } from '@/app/weight/Weight'
+import { AddWeightModalProps } from '@/app/weight/Weight'
 import { FormEvent, TextInputChangeEvent } from '@/app/globals'
 import axios from 'axios'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
@@ -12,7 +12,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
-const AddWeightModal = ({ closeModal, change }: IAddWeightModal) => {
+const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
   const [calendar, setCalendar] = useState(false)
   const calendarRef = useRef<any>()
   const [weight, setWeight] = useState('')

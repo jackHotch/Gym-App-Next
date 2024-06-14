@@ -1,5 +1,5 @@
 import styles from './TestChart.module.css'
-import { IChart } from '@/app/weight/Weight'
+import { ChartProps } from '@/app/globals'
 import { Line } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 )
 
-const Chart = ({ weight }: IChart) => {
+const Chart = ({ weight }: ChartProps) => {
   let labels: string[] = []
   let data: number[] = []
 

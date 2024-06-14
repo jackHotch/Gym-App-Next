@@ -2,12 +2,17 @@
 
 import React, { useState } from 'react'
 import styles from './WeightList.module.css'
-import { IWeightList } from '@/app/weight/Weight'
+import { WeightListProps } from '@/app/weight/Weight'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
 
-const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: IWeightList) => {
+const WeightList = ({
+  weight,
+  hamburger,
+  setHamburger,
+  setWeightChange,
+}: WeightListProps) => {
   const [addWeightModal, setAddWeightModal] = useState<boolean>(false)
   let newArray = Array.from({ length: weight.length }, (value, index) => index)
   newArray.reverse()
@@ -50,7 +55,10 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: IWeigh
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
                 <span>
-                  <MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)} />
+                  <MoreVertIcon
+                    id={styles.three_dots}
+                    onClick={() => changeHamburger(key)}
+                  />
                 </span>
                 <div className={styles.entry_modal}>
                   {hamburger[key] && (
