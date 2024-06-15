@@ -1,6 +1,6 @@
 .navbar {
     background-color: var(--blue);
-    padding: 30px;
+    padding: 5px;
     display: flex;
     flex-flow: row wrap;
     max-height: 100px;
@@ -10,16 +10,19 @@
 .logo {
     width: max-content;
     height: max-content;
-    margin-left: 10px;
+    margin: 10px 0 0 40px;
     display: flex;
     align-content: center;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
 }
 
 .logo img {
+    height: 25px;
+}
+
+.logo div {
     height: 35px;
-    padding-right: 10px;
 }
 
 .logo_link {
@@ -34,13 +37,14 @@
 }
 
 .link_item_div {
-    padding: 0 10px;
+    padding: 0 15px;
     margin: 0 15px;
     font-size: 1.3rem;
 }
 
 .link_item {
     color: white;
+    line-height: 2rem;
 }
 
 .link_container {

@@ -7,8 +7,7 @@
 
 ## Convertion to Next and Typescript
 
-- Convert the `/record/workout/finished` page
-- Fix all of the css
+- Fix the of WeightList.tsx
 
 ## Split
 

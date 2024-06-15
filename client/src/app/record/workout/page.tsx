@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import styles from '../Record.module.css'
+import styles from './Workout.module.css'
 import AddExerciseModal from '@/components/isolated/Record/AddExerciseModal/AddExerciseModal'
 import { IExercises } from '../record.ts'
 import { TextInputChangeEvent, TextAreaChangeEvent, ButtonEvent } from '@/app/globals'
@@ -48,7 +48,7 @@ const Workout = () => {
 
   function addSet(index: number) {
     const temp1 = [...exercises]
-    temp1[index].sets.push({ weight: '0', reps: '0', rpe: '' })
+    temp1[index].sets.push({ weight: '', reps: '', rpe: '' })
     setExercises(temp1)
   }
 
@@ -93,7 +93,7 @@ const Workout = () => {
     <div className={styles.background}>
       <form>
         <div className={styles.container}>
-          <h2 className={styles.title}>Workout #{workoutNumber}</h2>
+          <h1 className={styles.title}>Workout #{workoutNumber}</h1>
           <div className={styles.exercises}>
             <AnimatePresence>
               {exercises.map((value, key) => {
@@ -196,7 +196,7 @@ const Workout = () => {
                           <textarea
                             placeholder='Notes...'
                             onChange={(e: TextAreaChangeEvent) =>
-                              changeNotes(e, '34px', key)
+                              changeNotes(e, '1px', key)
                             }
                           ></textarea>
                         </motion.div>

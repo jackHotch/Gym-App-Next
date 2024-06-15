@@ -35,7 +35,7 @@ const Searchbar = ({
   function handleClick(name: string) {
     setNewExercise([
       ...newExercise,
-      { name: name, sets: [{ weight: '0', reps: '0', rpe: '' }], notes: '' },
+      { name: name, sets: [{ weight: '', reps: '', rpe: '' }], notes: '' },
     ])
   }
 

@@ -74,7 +74,7 @@ const AddExerciseModal = ({
         exit='exit'
       >
         <div className={styles.header}>
-          <button className={styles.new_exercise} onClick={() => setModal(true)}>
+          <button className={styles.create_exercise} onClick={() => setModal(true)}>
             Create New Exercise
           </button>
           <button onClick={closeModal}>

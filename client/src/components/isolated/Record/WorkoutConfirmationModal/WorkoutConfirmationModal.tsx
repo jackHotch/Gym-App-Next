@@ -37,7 +37,7 @@ const WorkoutConfirmationModal = ({
         animate='visible'
         exit='exit'
       >
-        <h4>Are You Sure You Want to Finish Your Workout?</h4>
+        <h2>Are You Sure You Want to Finish Your Workout?</h2>
         <div className={styles.buttons}>
           <button onClick={(e) => handleSubmit(e)}>Finish Workout</button>
           <button onClick={() => setConfirmationModal(false)}>Cancel</button>

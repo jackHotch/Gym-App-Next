@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import styles from './Navbar.module.css'
 import { motion, useAnimation } from 'framer-motion'
@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Navbar = () => {
-
   const control1 = useAnimation()
   const control2 = useAnimation()
   const control3 = useAnimation()
@@ -15,23 +14,23 @@ const Navbar = () => {
   const controlList = [control1, control2, control3, control4]
 
   const items = [
-    {route: '/splits', label: 'Splits'}, 
-    {route: '/record', label: 'Record'}, 
-    {route: '/weight', label: 'Weight'}, 
-    {route: '/progress', label: 'Progress'}
+    { route: '/splits', label: 'Splits' },
+    { route: '/record', label: 'Record' },
+    { route: '/weight', label: 'Weight' },
+    { route: '/progress', label: 'Progress' },
   ]
 
   const showUnderline = (ind: number) => {
     const control = controlList[ind]
     control.start({
-      width: `70%`
+      width: `70%`,
     })
   }
 
   const removeUnderline = (ind: number) => {
     const control = controlList[ind]
     control.start({
-      width: 0
+      width: 0,
     })
   }
 
@@ -41,20 +40,22 @@ const Navbar = () => {
         <div className={styles.logo}>
           <Link href='/' className={styles.logo_link}>
             <img src='/images/barbell.png' />
-            The Gym
+            <div>The Gym</div>
           </Link>
-
         </div>
-        
+
         <div className={styles.links}>
           {items.map((value, key) => {
             return (
               <div key={key} className={styles.link_container}>
-                <div className={styles.link_item_div} 
-                  onMouseEnter={() => showUnderline(key)} 
+                <div
+                  className={styles.link_item_div}
+                  onMouseEnter={() => showUnderline(key)}
                   onMouseLeave={() => removeUnderline(key)}
                 >
-                  <Link href={value.route} className={styles.link_item}>{value.label}</Link>
+                  <Link href={value.route} className={styles.link_item}>
+                    {value.label}
+                  </Link>
                 </div>
 
                 <motion.div
@@ -62,10 +63,9 @@ const Navbar = () => {
                   animate={controlList[key]}
                 ></motion.div>
               </div>
-            
-          )})}
+            )
+          })}
         </div>
-        
       </div>
     </nav>
   )

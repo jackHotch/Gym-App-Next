@@ -73,7 +73,7 @@ const CreateNewExerciseModal = ({
             </button>
           </div>
           <div className={styles.new_exercise_form}>
-            <h5 className={styles.title}>Create New Exercise</h5>
+            <h3 className={styles.title}>Create New Exercise</h3>
 
             <input
               type='text'
