@@ -7,7 +7,13 @@
 
 ## Convertion to Next and Typescript
 
-- Fix the of WeightList.tsx
+- Fix the css of the notes textarea
+- Fix the workout number on the `/record/workout/finished` page
+
+### Things to change on mac
+
+- add .env file
+- add .env to gitignore
 
 ## Split
 
