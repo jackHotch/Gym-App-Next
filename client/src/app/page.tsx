@@ -1,10 +1,5 @@
 const Home = () => {
-  return (
-    <>
-      <div>Home</div>
-      <p>This is to test my git account</p>
-    </>
-  )
+  return <div>Home</div>
 }
 
 export default Home
