@@ -11,7 +11,7 @@ router.post('/create', async (req: Request, res: Response) => {
 
 router.get('/number', async (req: Request, res: Response) => {
   let number = await getLastWorkoutNumber()
-  number = parseInt(number) + 1
+  number = parseInt(number)
   res.json(number)
 })
 

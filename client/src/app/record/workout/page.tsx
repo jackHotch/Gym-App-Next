@@ -25,7 +25,8 @@ const Workout = () => {
 
   useEffect(() => {
     axios.get('/api/workout/number').then((res) => {
-      setWorkoutNumber(res.data)
+      let temp = res.data
+      setWorkoutNumber(temp + 1)
     })
   }, [])
 
@@ -60,11 +61,7 @@ const Workout = () => {
     })
   }
 
-  function changeNotes(
-    e: TextAreaChangeEvent,
-    defaultHeight: string,
-    exerciseNumber: number
-  ) {
+  function changeNotes(e: TextAreaChangeEvent, defaultHeight: string, exerciseNumber: number) {
     if (e) {
       e.target.style.height = defaultHeight
       e.target.style.height = `${e.target.scrollHeight}px`
@@ -195,19 +192,13 @@ const Workout = () => {
                         >
                           <textarea
                             placeholder='Notes...'
-                            onChange={(e: TextAreaChangeEvent) =>
-                              changeNotes(e, '1px', key)
-                            }
+                            onChange={(e: TextAreaChangeEvent) => changeNotes(e, '1px', key)}
                           ></textarea>
                         </motion.div>
                       )}
                     </AnimatePresence>
 
-                    <button
-                      className={styles.add_set}
-                      type='button'
-                      onClick={() => addSet(key)}
-                    >
+                    <button className={styles.add_set} type='button' onClick={() => addSet(key)}>
                       Add Set
                     </button>
                   </motion.div>

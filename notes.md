@@ -10,11 +10,6 @@
 - Fix the css of the notes textarea
 - Fix the workout number on the `/record/workout/finished` page
 
-### Things to change on mac
-
-- add .env file
-- add .env to gitignore
-
 ## Split
 
 - Shows all past splits
@@ -29,10 +24,11 @@
 
 ## Record
 
+- Create a modal that pops up when the user tries to leave the page when they are in the middle of creating a workout, says something like "Warning - If you leave your current workout will not be saved"
+
 ### Set.tsx
 
-- Instead of passing in value, changed to value2
-- I think that was an error in react that somehow still worked
+- Instead of passing in value, changed to value2, I think that was an error in react that somehow still worked
 
 ## Weight
 
