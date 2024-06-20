@@ -9,14 +9,12 @@
   position: relative;
 }
 
-.container h3 {
+.container h2 {
   width: 60%;
   height: 55px;
   margin: 5px auto 20px auto;
   text-align: center;
   padding-bottom: 10px;
-  font-weight: 500;
-  font-size: calc(1.3rem + 0.6vw);
 }
 
 .add_btn_div {

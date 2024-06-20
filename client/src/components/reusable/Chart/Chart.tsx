@@ -1,6 +1,7 @@
 import styles from './TestChart.module.css'
 import { ChartProps } from '@/app/globals'
 import { Line } from 'react-chartjs-2'
+import DateRangePicker from '../DateRangePicker/DateRangePicker'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,20 +9,14 @@ import {
   PointElement,
   LineElement,
   Tooltip,
-  Title,
   Legend,
+  Filler,
 } from 'chart.js'
 import { lineChartData } from './FAKEDATA'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Title,
-  Legend
-)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler)
+
+ChartJS.defaults.maintainAspectRatio = false
 
 const Chart = ({ weight }: ChartProps) => {
   let labels: string[] = []
@@ -36,11 +31,7 @@ const Chart = ({ weight }: ChartProps) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'left',
-      },
-      title: {
-        display: true,
-        text: 'Weight',
+        display: false,
       },
     },
   }
@@ -58,7 +49,10 @@ const Chart = ({ weight }: ChartProps) => {
 
   return (
     <div className={styles.container}>
-      <Line options={options} data={chartData} />
+      <DateRangePicker />
+      <div className={styles.chart_container}>
+        <Line options={options} data={lineChartData} />
+      </div>
     </div>
   )
 }

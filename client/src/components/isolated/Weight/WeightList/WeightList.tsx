@@ -7,12 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
 
-const WeightList = ({
-  weight,
-  hamburger,
-  setHamburger,
-  setWeightChange,
-}: WeightListProps) => {
+const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: WeightListProps) => {
   const [addWeightModal, setAddWeightModal] = useState<boolean>(false)
   let newArray = Array.from({ length: weight.length }, (value, index) => index)
   newArray.reverse()
@@ -35,7 +30,7 @@ const WeightList = ({
 
   return (
     <div className={styles.container}>
-      <h3>Weight</h3>
+      <h2>Weight</h2>
       <div className={styles.add_btn_div}>
         <span className={styles.add_btn} onClick={openAddWeightModal}>
           +
@@ -55,10 +50,7 @@ const WeightList = ({
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
                 <span>
-                  <MoreVertIcon
-                    id={styles.three_dots}
-                    onClick={() => changeHamburger(key)}
-                  />
+                  <MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)} />
                 </span>
                 <div className={styles.entry_modal}>
                   {hamburger[key] && (

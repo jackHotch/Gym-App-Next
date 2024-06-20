@@ -45,6 +45,7 @@
 ### Weight Chart
 
 - Create chart
+- Use dates without years or extra zeros on the x axis
 - Let user pick any date range
 - Use NextUI for DateRangePicker - https://nextui.org/docs/components/date-range-picker#controlled
 - also give some standard options for date range
