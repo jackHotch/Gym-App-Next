@@ -35,17 +35,17 @@ export interface CreateNewExerciseModalProps {
   setExercisesChanged: Dispatch<SetStateAction<boolean>>
 }
 
-type ThandleChange = (a: TextInputChangeEvent, b: number, c: number, d: string) => void
+type handleChange = (a: TextInputChangeEvent, b: number, c: number, d: string) => void
 
-type TremoveSet = (a: number, b: number) => void
+type removeSet = (a: number, b: number) => void
 
 export interface SetProps {
   key: number
   value: ISet
   exerciseNumber: number
   setNumber: number
-  handleChange: ThandleChange
-  removeSet: TremoveSet
+  handleChange: handleChange
+  removeSet: removeSet
 }
 
 export interface ExerciseModalProps {

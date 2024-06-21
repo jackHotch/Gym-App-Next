@@ -5,10 +5,13 @@
 - Make modals that pop out from three dots cover the three dots like in the strong app
 - Make the blue color slighly darker, more blue
 
-## Convertion to Next and Typescript
+## Authentication
 
-- Fix the css of the notes textarea
-- Fix the workout number on the `/record/workout/finished` page
+- make `/` a home page that say something like "welcome to app..."
+- make a new folder `/auth`, inside create 2 routes for `/login` and `/registration` with a `layout.tsx`
+  - this `layout.tsx` will have a special header for the authentication pages
+- then move the current home page to `/[username]/dashboard` and have all the other pages follow that, ex: `/[username]/dashboard/weight`
+  - this `/dashboard` route will have a `layout.tsx` file which will have the normal navbar
 
 ## Split
 
@@ -47,9 +50,11 @@
 - Create chart
 - Use dates without years or extra zeros on the x axis
 - Let user pick any date range
-- Use NextUI for DateRangePicker - https://nextui.org/docs/components/date-range-picker#controlled
+  - Create a select menu and two DatePickers
+  - Select menu has standard options including "Custom"
+  - When custom is not selected the DatePickers are disabled
+  - When the custom are selected the DatePickers are enabled and the user can select any date range they want
 - also give some standard options for date range
-- allow user to hover over the chart to see the specific entry
 - To create chart with dynamic data
   - Get the entire list of weights from api
   - filter based on the range picked by the user
