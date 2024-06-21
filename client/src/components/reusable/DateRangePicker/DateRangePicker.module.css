@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 5px auto;
+}
+
+.start_input, .end_input {
+  position: relative;
+  width: min-content;
+}
+
+.container label {
+  margin-right: 10px;
+  height: 24px;
+}

@@ -49,7 +49,7 @@ const Chart = ({ weight }: ChartProps) => {
 
   return (
     <div className={styles.container}>
-      <DateRangePicker />
+      <DateRangePicker sxContainer={{ marginTop: '15px' }} />
       <div className={styles.chart_container}>
         <Line options={options} data={lineChartData} />
       </div>

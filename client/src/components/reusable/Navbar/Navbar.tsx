@@ -3,7 +3,6 @@
 import styles from './Navbar.module.css'
 import { motion, useAnimation } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const Navbar = () => {
   const control1 = useAnimation()
@@ -58,10 +57,7 @@ const Navbar = () => {
                   </Link>
                 </div>
 
-                <motion.div
-                  className={styles.underline}
-                  animate={controlList[key]}
-                ></motion.div>
+                <motion.div className={styles.underline} animate={controlList[key]}></motion.div>
               </div>
             )
           })}
