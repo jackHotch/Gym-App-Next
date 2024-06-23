@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div>Home</div>
+  return <div>This is a test for the pull request</div>
 }
 
 export default Home
