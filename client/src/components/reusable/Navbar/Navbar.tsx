@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className={styles.navbar}>
         <div className={styles.logo}>
           <Link href='/' className={styles.logo_link}>
-            <img src='/images/barbell.png' />
+            <img src='/images/dumbbell-white.png' />
             <div>The Gym</div>
           </Link>
         </div>

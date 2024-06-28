@@ -4,6 +4,7 @@
 - https://mui.com/x/api/date-pickers/pickers-day/
 - Make modals that pop out from three dots cover the three dots like in the strong app
 - Make the blue color slighly darker, more blue
+- Change the img by the brand name in the navbar to a lottie file that animates on hover
 
 ## Convertion to Next and Typescript
 
