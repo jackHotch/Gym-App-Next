@@ -30,7 +30,7 @@ function insertIntoMySql(rows) {
     for (const name of rows) {
         con.query("insert into `exercises` (`name`) values (?)", [name], (err, results, field) => {
             if (err) { 
-                console.log("Unable to insert item at row ", i + 1); 
+                console.log("Unable to insert item at row "); 
                 return console.log(err); 
             }
         })

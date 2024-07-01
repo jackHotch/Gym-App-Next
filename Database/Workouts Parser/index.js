@@ -48,7 +48,7 @@ function insertIntoMySql(rows) {
     });
     
     for (let i = 0; i < rows.length; i++) {
-        con.query("insert into `workouts` (`Date`, `Start Time`, `Workout Name`, `Duration`, `Exercise Name`, `Set Order`, `Weight`, `Reps`, `Distance`, `Seconds`, `Notes`, `Workout Notes`, `RPE`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", rows[i], (err, results, field) => {
+        con.query("insert into `workouts` (`Date`, `Start Time`, `Workout Number`, `Duration`, `Exercise Name`, `Set Order`, `Weight`, `Reps`, `Distance`, `Seconds`, `Notes`, `Workout Notes`, `RPE`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", rows[i], (err, results, field) => {
             if (err) { 
                 console.log("Unable to insert item at row ", i + 1); 
                 return console.log(err); 
