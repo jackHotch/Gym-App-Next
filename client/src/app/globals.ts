@@ -36,8 +36,15 @@ export interface DatePickerProps {
   sxCalendarBackground?: Object
 }
 
-export interface RangeSelectorProps {
+export interface RangeButtonProps {
+  toggle: () => void
+  selection: string
   sxContainer?: Object
+}
+
+export interface RangeListProps {
+  setSelection: Dispatch<SetStateAction<string>>
+  close: () => void
 }
 
 export interface DateRangePickerProps {

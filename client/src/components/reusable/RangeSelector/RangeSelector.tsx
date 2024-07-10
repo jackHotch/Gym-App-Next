@@ -1,13 +1,18 @@
 import styles from './RangeSelctor.module.css'
-import { RangeSelectorProps } from '@/app/globals'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import RangeButton from './RangeButton/RangeButton'
+import RangeList from './RangeList/RangeList'
+import { useToggle } from '@/hooks/useToggle/useToggle'
+import { useState } from 'react'
 
-const RangeSelector = ({ sxContainer }: RangeSelectorProps) => {
+const RangeSelector = () => {
+  const [selection, setSelection] = useState<string>('3 months')
+  const [isListVisible, toggleList, openList, closeList] = useToggle()
+
   return (
-    <div className={styles.container} style={sxContainer}>
-      <span>Select a Date Range</span>
-      <ExpandMoreIcon />
-    </div>
+    <>
+      <RangeButton selection={selection} toggle={toggleList} />
+      {isListVisible && <RangeList setSelection={setSelection} close={closeList} />}
+    </>
   )
 }
 

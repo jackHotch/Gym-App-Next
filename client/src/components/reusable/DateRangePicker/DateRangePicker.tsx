@@ -22,7 +22,7 @@ const DateRangePicker = ({ sxContainer }: DateRangePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={styles.container} style={sxContainer}>
-        <div className={styles.inputs}>
+        <div className={styles.standard_input}>
           <label>Select:</label>
           <RangeSelector />
         </div>
