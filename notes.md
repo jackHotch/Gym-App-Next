@@ -6,10 +6,13 @@
 - Make the blue color slighly darker, more blue
 - Change the img by the brand name in the navbar to a lottie file that animates on hover
 
-## Convertion to Next and Typescript
+## Authentication
 
-- Fix the css of the notes textarea
-- Fix the workout number on the `/record/workout/finished` page
+- make `/` a home page that say something like "welcome to app..."
+- make a new folder `/auth`, inside create 2 routes for `/login` and `/registration` with a `layout.tsx`
+  - this `layout.tsx` will have a special header for the authentication pages
+- then move the current home page to `/[username]/dashboard` and have all the other pages follow that, ex: `/[username]/dashboard/weight`
+  - this `/dashboard` route will have a `layout.tsx` file which will have the normal navbar
 
 ## Split
 
@@ -33,9 +36,14 @@
 
 ## Weight
 
-- List and chart stack vertically when the page width is too small
-  - First thought, put chart under list
-  - Or put it above like in MyFitnessPal
+- Mobile view
+  - First thought: Create two headers, List and Chart, user clicks on them to show the respective pages
+    - Maybe when the header is focused the it gets bigger and has a normal font weight and when the header is unfocused it is smaller and slightly greyed out
+    - The page it self could slide from left to right when you click on the header
+  - Second though: List and chart stack vertically when the page width is too small
+    - First thought, put chart under list
+    - Or put it above like in MyFitnessPal
+- Figure out whether or not to have a header in desktop view
 - Add loading skeletons
 
 ### WeightList.jsx
@@ -48,19 +56,26 @@
 - Create chart
 - Use dates without years or extra zeros on the x axis
 - Let user pick any date range
-- Use NextUI for DateRangePicker - https://nextui.org/docs/components/date-range-picker#controlled
+  - Create a select menu and two DatePickers
+  - Select menu has standard options including "Custom"
+  - When custom is not selected the DatePickers are disabled
+  - When the custom are selected the DatePickers are enabled and the user can select any date range they want
 - also give some standard options for date range
-- allow user to hover over the chart to see the specific entry
 - To create chart with dynamic data
-  - Get the entire list of weights from api
-  - filter based on the range picked by the user
-  - give that range to a function which will get the data needed for the chart
-    - The function creates an array of weights for the data
-      - uses the dates to create the labels for the x axis
-      - either use each date as a label for the x axis or create labels at consistent intervals
+  - Create the start and end dates for each predefined date range
+  - Use those to make the api call and use those to grab the entries need from the database
+  - either use each date as a label for the x axis or create labels at consistent intervals
 
 ## Progress
+
+## APIs
+
+### Weight
+
+- Create an API to select rows based on a given date range
 
 ## Database
 
 - Give each exercise a muscle group (Chest, Legs, Arms...)
+- Refactor date column in the weight table to use DATE instead of TIMESTAMP
+  - should be in the format YYYY-MM-DD
