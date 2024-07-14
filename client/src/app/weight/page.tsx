@@ -1,38 +1,27 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './Weight.module.css'
-import { IWeightData } from '../globals'
-import axios from 'axios'
 import WeightList from '@/components/isolated/Weight/WeightList/WeightList.tsx'
 import Chart from '@/components/reusable/Chart/Chart'
+import { useWeight } from '@/hooks/useWeight/useWeight'
 
 const Weight = () => {
-  const [weight, setWeight] = useState<IWeightData[]>([])
-  const [weightChange, setWeightChange] = useState<boolean>(false)
-  const arr = new Array(weight.length).fill(false)
+  const { data, refetch } = useWeight()
+  const arr = new Array(data?.length).fill(false)
   const [hamburger, setHamburger] = useState<boolean[]>(arr)
-
-  useEffect(() => {
-    axios.get('/api/weight').then((res) => {
-      console.log('getting weight')
-      setWeight(res.data)
-      setHamburger(arr)
-      setWeightChange(false)
-    })
-  }, [weightChange])
 
   return (
     <div className={styles.container}>
       <div className={styles.body}>
         <WeightList
-          weight={weight}
+          weight={data}
           hamburger={hamburger}
           setHamburger={setHamburger}
-          setWeightChange={setWeightChange}
+          refresh={refetch}
         />
 
-        <Chart weight={weight} />
+        <Chart weight={data} />
       </div>
     </div>
   )

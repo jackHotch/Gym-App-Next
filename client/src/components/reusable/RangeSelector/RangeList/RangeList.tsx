@@ -1,8 +1,6 @@
 import styles from './RangeList.module.css'
 import { RangeListProps } from '@/app/globals'
-import { useMutation, useQuery } from '@tanstack/react-query'
 import { getDate } from '@/libs/libs'
-import { getWeightByRange } from '@/actions/Weight/actions'
 
 interface optionsProps {
   text: string

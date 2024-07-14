@@ -14,7 +14,15 @@ import {
 } from 'chart.js'
 import { lineChartData } from './FAKEDATA'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+  Filler
+)
 
 ChartJS.defaults.maintainAspectRatio = false
 
@@ -22,7 +30,7 @@ const Chart = ({ weight }: ChartProps) => {
   let labels: string[] = []
   let data: number[] = []
 
-  weight.map((value) => {
+  weight?.map((value) => {
     labels.push(value.date)
     data.push(value.weight)
   })

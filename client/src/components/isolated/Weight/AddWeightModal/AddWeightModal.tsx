@@ -19,7 +19,11 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
   function convertDate(date: Date | Dayjs) {
     const newDate = date.toISOString().substring(0, 10)
     const formattedDate =
-      newDate.substring(5, 7) + '/' + newDate.substring(8, 10) + '/' + newDate.substring(0, 4)
+      newDate.substring(5, 7) +
+      '/' +
+      newDate.substring(8, 10) +
+      '/' +
+      newDate.substring(0, 4)
     return formattedDate
   }
 
@@ -49,7 +53,7 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
     axios.post('/api/weight', data).then((res) => {
       console.log('Weight Added')
       closeModal()
-      change(true)
+      change()
     })
   }
 
@@ -69,7 +73,12 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
               <div className={styles.weight}>
                 <label>Weight: </label>
                 <div className={styles.weight_input}>
-                  <input type='text' placeholder='lbs' value={weight} onChange={updateWeight} />
+                  <input
+                    type='text'
+                    placeholder='lbs'
+                    value={weight}
+                    onChange={updateWeight}
+                  />
                 </div>
               </div>
 

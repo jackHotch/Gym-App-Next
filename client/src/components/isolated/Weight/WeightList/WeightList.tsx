@@ -7,20 +7,18 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
 
-const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: WeightListProps) => {
+const WeightList = ({ weight, hamburger, setHamburger, refresh }: WeightListProps) => {
   const [addWeightModal, setAddWeightModal] = useState<boolean>(false)
-  let newArray = Array.from({ length: weight.length }, (value, index) => index)
-  newArray.reverse()
+  let reversedArray: number[] = []
+  weight?.map((_, index) => {
+    return reversedArray.push(index)
+  })
+  reversedArray.reverse()
+  const reversedWeight = weight?.toReversed()
 
   const openAddWeightModal = () => setAddWeightModal(true)
 
   const closeAddWeightModal = () => setAddWeightModal(false)
-
-  const closeEntryModal = (id: number) => {
-    const temp = [...hamburger]
-    temp[id] = false
-    setHamburger(temp)
-  }
 
   const changeHamburger = (id: number) => {
     const temp = [...hamburger]
@@ -43,23 +41,20 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: Weight
           <span id={styles.date_head}>Date</span>
         </div>
         <div className={styles.list_entries}>
-          {[...weight].reverse().map((value, key) => {
+          {reversedWeight?.map((value, key) => {
             return (
               <div key={key} className={styles.entry}>
-                <span className={styles.number}>#{newArray[key] + 1}</span>
+                <span className={styles.number}>#{reversedArray[key] + 1}</span>
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
                 <span>
-                  <MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)} />
+                  <MoreVertIcon
+                    id={styles.three_dots}
+                    onClick={() => changeHamburger(key)}
+                  />
                 </span>
                 <div className={styles.entry_modal}>
-                  {hamburger[key] && (
-                    <EntryModal
-                      id={value.id}
-                      change={setWeightChange}
-                      closeModal={closeEntryModal}
-                    />
-                  )}
+                  {hamburger[key] && <EntryModal id={value.id} change={refresh} />}
                 </div>
               </div>
             )
@@ -68,7 +63,7 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: Weight
       </div>
 
       {addWeightModal && (
-        <AddWeightModal closeModal={closeAddWeightModal} change={setWeightChange} />
+        <AddWeightModal closeModal={closeAddWeightModal} change={refresh} />
       )}
     </div>
   )

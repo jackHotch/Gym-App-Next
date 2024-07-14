@@ -16,7 +16,7 @@ export interface IWeightData {
 }
 
 export interface ChartProps {
-  weight: IWeightData[]
+  weight: IWeightData[] | undefined
 }
 
 export interface SearchbarProps {
