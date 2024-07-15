@@ -50,3 +50,12 @@ export interface RangeListProps {
 export interface DateRangePickerProps {
   sxContainer?: Object
 }
+
+export interface IWeightContext {
+  weightRangeData: IWeightData[]
+  setWeightRangeData: Dispatch<SetStateAction<IWeightData[]>>
+  startDate: any
+  setStartDate: Dispatch<SetStateAction<any>>
+  endDate: any
+  setEndDate: Dispatch<SetStateAction<any>>
+}

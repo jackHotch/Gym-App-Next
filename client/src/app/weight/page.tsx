@@ -4,7 +4,7 @@ import { useState } from 'react'
 import styles from './Weight.module.css'
 import WeightList from '@/components/isolated/Weight/WeightList/WeightList.tsx'
 import Chart from '@/components/reusable/Chart/Chart'
-import { useWeight } from '@/hooks/useWeight/useWeight'
+import { useWeight } from '@/hooks/api/useWeight/useWeight'
 
 const Weight = () => {
   const { data, refetch } = useWeight()
@@ -21,7 +21,7 @@ const Weight = () => {
           refresh={refetch}
         />
 
-        <Chart weight={data} />
+        <Chart />
       </div>
     </div>
   )
