@@ -1,8 +1,11 @@
-
+import styles from './Progress.module.css'
+import Cancel from '@/lib/Button/Cancel'
 
 const Progress = () => {
   return (
-    <div>Progress</div>
+    <div className={styles.container}>
+      <Cancel />
+    </div>
   )
 }
 
