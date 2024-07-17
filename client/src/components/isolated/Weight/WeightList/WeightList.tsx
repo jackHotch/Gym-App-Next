@@ -6,33 +6,21 @@ import { WeightListProps } from '@/app/weight/Weight'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
+import { useToggle } from '@/hooks/useToggle/useToggle'
+import { useArrayToggle } from '@/hooks/useArrayToggle/useArrayToggle'
 
-const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: WeightListProps) => {
-  const [addWeightModal, setAddWeightModal] = useState<boolean>(false)
+const WeightList = ({ weight, setWeightChange }: WeightListProps) => {
+  const [isAWMVisible, _, openAWM, closeAWM] = useToggle()
+  const arr: boolean[] = new Array(weight.length).fill(false)
+  const [isEntryVisible, toggleEntry, __, closeEntry] = useArrayToggle(arr)
   let newArray = Array.from({ length: weight.length }, (value, index) => index)
   newArray.reverse()
-
-  const openAddWeightModal = () => setAddWeightModal(true)
-
-  const closeAddWeightModal = () => setAddWeightModal(false)
-
-  const closeEntryModal = (id: number) => {
-    const temp = [...hamburger]
-    temp[id] = false
-    setHamburger(temp)
-  }
-
-  const changeHamburger = (id: number) => {
-    const temp = [...hamburger]
-    temp[id] = !hamburger[id]
-    setHamburger(temp)
-  }
 
   return (
     <div className={styles.container}>
       <h2>Weight</h2>
       <div className={styles.add_btn_div}>
-        <span className={styles.add_btn} onClick={openAddWeightModal}>
+        <span className={styles.add_btn} onClick={openAWM}>
           +
         </span>
       </div>
@@ -50,15 +38,11 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: Weight
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
                 <span>
-                  <MoreVertIcon id={styles.three_dots} onClick={() => changeHamburger(key)} />
+                  <MoreVertIcon id={styles.three_dots} onClick={() => toggleEntry(key)} />
                 </span>
                 <div className={styles.entry_modal}>
-                  {hamburger[key] && (
-                    <EntryModal
-                      id={value.id}
-                      change={setWeightChange}
-                      closeModal={closeEntryModal}
-                    />
+                  {isEntryVisible[key] && (
+                    <EntryModal id={value.id} change={setWeightChange} closeModal={closeEntry} />
                   )}
                 </div>
               </div>
@@ -67,9 +51,7 @@ const WeightList = ({ weight, hamburger, setHamburger, setWeightChange }: Weight
         </div>
       </div>
 
-      {addWeightModal && (
-        <AddWeightModal closeModal={closeAddWeightModal} change={setWeightChange} />
-      )}
+      {isAWMVisible && <AddWeightModal closeModal={closeAWM} change={setWeightChange} />}
     </div>
   )
 }
