@@ -1,0 +1,1 @@
+export type useToggleType = [boolean, () => void, () => void, () => void]

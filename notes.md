@@ -66,6 +66,11 @@
   - Use those to make the api call and use those to grab the entries need from the database
   - either use each date as a label for the x axis or create labels at consistent intervals
 
+#### Range Slector
+
+- Inside `Chart.tsx`, put the weightRangeData, startDate and endDate variables in the useContext hook
+- When the user changes the date range, it makes the api call and updates the 3 variables
+
 ## Progress
 
 ## APIs

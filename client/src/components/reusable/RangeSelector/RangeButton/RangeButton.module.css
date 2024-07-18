@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 156px;
+  height: 28.5px;
+  padding: 2px 3px;
+  justify-content: space-between;
+}
+
+.container > * {
+  line-height: 24px;
+  height: min-content;
+}

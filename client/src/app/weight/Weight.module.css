@@ -9,5 +9,6 @@
   display: flex;
   flex-flow: row;
   flex-grow: 1;
-  max-height: calc(100vh - 100px);
+  width: 100%;
+  max-height: calc(100vh - 80px);
 }

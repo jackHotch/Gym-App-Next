@@ -45,7 +45,7 @@
 }
 
 .data_item:hover {
-    background-color: rgb(224, 224, 224);
+    background-color: var(--lightgrey);
 }
 
 .data .data_item:nth-last-child(-n + 1) {

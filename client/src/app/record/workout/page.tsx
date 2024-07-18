@@ -64,7 +64,7 @@ const Workout = () => {
   function changeNotes(e: TextAreaChangeEvent, defaultHeight: string, exerciseNumber: number) {
     if (e) {
       e.target.style.height = defaultHeight
-      e.target.style.height = `${e.target.scrollHeight}px`
+      e.target.style.height = `${e.target.scrollHeight - 15}px`
     }
 
     const temp = [...exercises]
@@ -192,7 +192,7 @@ const Workout = () => {
                         >
                           <textarea
                             placeholder='Notes...'
-                            onChange={(e: TextAreaChangeEvent) => changeNotes(e, '1px', key)}
+                            onChange={(e: TextAreaChangeEvent) => changeNotes(e, '17px', key)}
                           ></textarea>
                         </motion.div>
                       )}

@@ -47,15 +47,21 @@ _Follow the following steps to run the application on your machine_
 
 ### Before the First Time
 
-1. Go into each `/Databse/* Parser/index.js` file and change the update the connection to your local database
+1. Go into each `/Database/"something" Parser` folder and run
+
+```sh
+npm install
+```
+
+2. Go into each `/Database/"something" Parser/index.js` file and change the update the connection to your local database
 
 ```js
 let con = mysql.createConnection({
-  host: YOUR INFORMATION,
-  user: YOUR INFORMATION,
-  password: YOUR INFORMATION,
-  database: YOUR INFORMATION,
-});
+  host: 'YOUR INFORMATION',
+  user: 'YOUR INFORMATION',
+  password: 'YOUR INFORMATION',
+  database: 'YOUR INFORMATION',
+})
 ```
 
 2. Run each parsing file to populate the database
@@ -72,6 +78,15 @@ npm install
 
 cd ../server
 npm install
+```
+
+4. Create a .env file in `/server`, ex:
+
+```js
+MYSQL_HOST = 'YOUR INFORMATION'
+MYSQL_USER = 'YOUR INFORMATION'
+MYSQL_PASSWORD = 'YOUR INFORMATION'
+MYSQL_DATABASE = 'YOUR INFORMATION'
 ```
 
 ### Run the Application
