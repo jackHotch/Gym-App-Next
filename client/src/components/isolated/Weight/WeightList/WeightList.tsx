@@ -1,20 +1,23 @@
 'use client'
 
-import React, { useState } from 'react'
 import styles from './WeightList.module.css'
 import { WeightListProps } from '@/app/weight/Weight'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
 import { useToggle } from '@/hooks/useToggle'
-import { useArrayToggle } from '@/hooks/useArrayToggle/useArrayToggle'
+import { useArrayToggle } from '@/hooks/useArrayToggle'
 
-const WeightList = ({ weight, setWeightChange }: WeightListProps) => {
+const WeightList = ({ weight, refresh }: WeightListProps) => {
   const [isAWMVisible, _, openAWM, closeAWM] = useToggle()
-  const arr: boolean[] = new Array(weight.length).fill(false)
+  const arr: boolean[] = new Array(weight?.length).fill(false)
   const [isEntryVisible, toggleEntry, __, closeEntry] = useArrayToggle(arr)
-  let newArray = Array.from({ length: weight.length }, (value, index) => index)
-  newArray.reverse()
+  let reversedArray: number[] = []
+  weight?.map((_, index) => {
+    return reversedArray.push(index)
+  })
+  reversedArray.reverse()
+  const reversedWeight = weight?.toReversed()
 
   return (
     <div className={styles.container}>
@@ -31,10 +34,10 @@ const WeightList = ({ weight, setWeightChange }: WeightListProps) => {
           <span id={styles.date_head}>Date</span>
         </div>
         <div className={styles.list_entries}>
-          {[...weight].reverse().map((value, key) => {
+          {reversedWeight?.map((value, key) => {
             return (
               <div key={key} className={styles.entry}>
-                <span className={styles.number}>#{newArray[key] + 1}</span>
+                <span className={styles.number}>#{reversedArray[key] + 1}</span>
                 <span className={styles.weight}>{value.weight} lbs</span>
                 <span className={styles.date}>{value.date}</span>
                 <span>
@@ -42,7 +45,7 @@ const WeightList = ({ weight, setWeightChange }: WeightListProps) => {
                 </span>
                 <div className={styles.entry_modal}>
                   {isEntryVisible[key] && (
-                    <EntryModal id={value.id} change={setWeightChange} closeModal={closeEntry} />
+                    <EntryModal id={value.id} change={refresh} closeModal={closeEntry} />
                   )}
                 </div>
               </div>
@@ -51,7 +54,7 @@ const WeightList = ({ weight, setWeightChange }: WeightListProps) => {
         </div>
       </div>
 
-      {isAWMVisible && <AddWeightModal closeModal={closeAWM} change={setWeightChange} />}
+      {isAWMVisible && <AddWeightModal closeModal={closeAWM} change={refresh} />}
     </div>
   )
 }

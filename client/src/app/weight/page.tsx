@@ -6,25 +6,17 @@ import { IWeightData } from '../globals'
 import axios from 'axios'
 import WeightList from '@/components/isolated/Weight/WeightList/WeightList.tsx'
 import Chart from '@/components/reusable/Chart/Chart'
+import { useWeight } from '@/hooks/api/useWeight'
 
 const Weight = () => {
-  const [weight, setWeight] = useState<IWeightData[]>([])
-  const [weightChange, setWeightChange] = useState<boolean>(false)
-
-  useEffect(() => {
-    axios.get('/api/weight').then((res) => {
-      console.log('getting weight')
-      setWeight(res.data)
-      setWeightChange(false)
-    })
-  }, [weightChange])
+  const { data, refetch } = useWeight()
 
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        <WeightList weight={weight} setWeightChange={setWeightChange} />
+        <WeightList weight={data} refresh={refetch} />
 
-        <Chart weight={weight} />
+        <Chart weight={data} />
       </div>
     </div>
   )

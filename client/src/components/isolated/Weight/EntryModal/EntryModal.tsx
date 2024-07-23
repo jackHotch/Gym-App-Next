@@ -10,7 +10,7 @@ const EntryModal = ({ id, change, closeModal }: EntryModalProps) => {
     axios.delete(`/api/weight/${id}`).then((res) => {
       console.log('Entry Deleted')
       closeModal(id)
-      change(true)
+      change()
     })
   }
 
