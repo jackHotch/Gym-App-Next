@@ -6,11 +6,11 @@ import styles from './ExerciseModal.module.css'
 import { motion } from 'framer-motion'
 
 const ExerciseModal = ({
-  hamburger,
-  setHamburger,
+  showExerciseModal,
+  toggleExerciseModal,
   ind,
-  displayNote,
-  setDisplayNote,
+  showNote,
+  toggleNote,
   exercises,
   setExercises,
 }: ExerciseModalProps) => {
@@ -34,23 +34,16 @@ const ExerciseModal = ({
     },
   }
 
-  function changeNote() {
-    const temp = [...displayNote]
-    temp[ind] = !displayNote[ind]
-    setDisplayNote(temp)
-
-    const ham = [...hamburger]
-    ham[ind] = !hamburger[ind]
-    setHamburger(ham)
+  const changeNote = () => {
+    toggleNote(ind)
+    toggleExerciseModal(ind)
   }
 
   useEffect(() => {
     let handler = (e: any) => {
       // if (!hamRef.current.contains(e.target)) {
       if (e.target.className === 'three_dots') {
-        const ham = [...hamburger]
-        ham[ind] = !hamburger[ind]
-        setHamburger(ham)
+        toggleExerciseModal(ind)
         return
       }
       // }
@@ -68,10 +61,7 @@ const ExerciseModal = ({
       if (id !== ind) return value
     })
     setExercises(newList)
-
-    const ham = [...hamburger]
-    ham[ind] = !hamburger[ind]
-    setHamburger(ham)
+    toggleExerciseModal(ind)
   }
 
   return (
@@ -84,7 +74,7 @@ const ExerciseModal = ({
       exit='exit'
     >
       <div className={styles.option} id={styles.add_note} onClick={changeNote}>
-        <span>{displayNote[ind] ? 'Remove Note' : 'Add Note'}</span>
+        <span>{showNote ? 'Remove Note' : 'Add Note'}</span>
       </div>
       <div className={styles.option} id={styles.remove_exercise} onClick={removeExercise}>
         <span>Remove Exercise</span>

@@ -18,7 +18,7 @@ export interface ISet {
 }
 
 export interface AddExerciseModalProps {
-  openModal: Dispatch<SetStateAction<boolean>>
+  closeModal: () => void
   exercises: IExercises[]
   setExercises: Dispatch<SetStateAction<IExercises[]>>
 }
@@ -31,7 +31,7 @@ export interface IAllExercises {
 }
 
 export interface CreateNewExerciseModalProps {
-  setModal: Dispatch<SetStateAction<boolean>>
+  closeModal: () => void
   setExercisesChanged: Dispatch<SetStateAction<boolean>>
 }
 
@@ -49,16 +49,16 @@ export interface SetProps {
 }
 
 export interface ExerciseModalProps {
-  hamburger: boolean[]
-  setHamburger: Dispatch<SetStateAction<boolean[]>>
+  showExerciseModal: boolean
+  toggleExerciseModal: (i: number) => void
   ind: number
-  displayNote: boolean[]
-  setDisplayNote: Dispatch<SetStateAction<boolean[]>>
+  showNote: boolean
+  toggleNote: (i: number) => void
   exercises: IExercises[]
   setExercises: Dispatch<SetStateAction<IExercises[]>>
 }
 
 export interface WorkoutConfirmationModalProps {
-  setConfirmationModal: Dispatch<SetStateAction<boolean>>
+  closeConfirmationModal: () =>  void
   handleSubmit: (e: ButtonEvent) => void
 }

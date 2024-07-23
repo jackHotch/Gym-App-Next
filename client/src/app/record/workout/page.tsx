@@ -12,14 +12,16 @@ import axios from 'axios'
 import WorkoutConfirmationModal from '@/components/isolated/Record/WorkoutConfirmationModal/WorkoutConfirmationModal.tsx'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useToggle } from '@/hooks/useToggle.ts'
+import { useArrayToggle } from '@/hooks/useArrayToggle.ts'
 
 const Workout = () => {
-  const [exerciseModal, setExerciseModal] = useState<boolean>(false)
-  const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
+  const [showAddExerciseModal, __, openAddExerciseModal, closeAddExerciseModal] = useToggle()
+  const [showConfirmationModal, _, openConfirmationModal, closeConfirmationModal] = useToggle()
   const [exercises, setExercises] = useState<IExercises[]>([])
   let arr = new Array(exercises.length).fill(false)
-  const [hamburger, setHamburger] = useState<boolean[]>(arr)
-  const [displayNote, setDisplayNote] = useState<boolean[]>(arr)
+  const [showExerciseModal, toggleExerciseModal] = useArrayToggle(arr)
+  const [showNotes, toggleNotes] = useArrayToggle(arr)
   const router = useRouter()
   const [workoutNumber, setWorkoutNumber] = useState<number>(0)
 
@@ -80,12 +82,6 @@ const Workout = () => {
     setExercises(temp)
   }
 
-  function changeHamburger(id: number) {
-    const temp = [...hamburger]
-    temp[id] = !hamburger[id]
-    setHamburger(temp)
-  }
-
   return (
     <div className={styles.background}>
       <form>
@@ -122,19 +118,19 @@ const Workout = () => {
                     <div className={styles.exercise_header}>
                       <span className={styles.exercise_name}>{value.name}</span>
                       <MoreVertIcon
-                        onClick={() => changeHamburger(key)}
+                        onClick={() => toggleExerciseModal(key)}
                         className={styles.three_dots}
                       />
                     </div>
                     <div className={styles.hamburger_container}>
                       <AnimatePresence>
-                        {hamburger[key] && (
+                        {showExerciseModal[key] && (
                           <ExerciseModal
-                            hamburger={hamburger}
-                            setHamburger={setHamburger}
+                            showExerciseModal={showExerciseModal[key]}
+                            toggleExerciseModal={toggleExerciseModal}
                             ind={key}
-                            displayNote={displayNote}
-                            setDisplayNote={setDisplayNote}
+                            showNote={showNotes[key]}
+                            toggleNote={toggleNotes}
                             exercises={exercises}
                             setExercises={setExercises}
                           />
@@ -167,7 +163,7 @@ const Workout = () => {
                     </AnimatePresence>
 
                     <AnimatePresence>
-                      {displayNote[key] && (
+                      {showNotes[key] && (
                         <motion.div
                           className={styles.notes}
                           initial={{
@@ -207,13 +203,13 @@ const Workout = () => {
             </AnimatePresence>
           </div>
           <div className={styles.add_exercise}>
-            <button type='button' onClick={() => setExerciseModal(true)}>
+            <button type='button' onClick={openAddExerciseModal}>
               Add Exercise
             </button>
           </div>
 
           <div className={styles.finish_workout}>
-            <button type='button' onClick={() => setConfirmationModal(true)}>
+            <button type='button' onClick={openConfirmationModal}>
               Finish Workout
             </button>
           </div>
@@ -221,16 +217,16 @@ const Workout = () => {
       </form>
 
       <AnimatePresence>
-        {exerciseModal && (
+        {showAddExerciseModal && (
           <AddExerciseModal
-            openModal={setExerciseModal}
+            closeModal={closeAddExerciseModal}
             exercises={exercises}
             setExercises={setExercises}
           />
         )}
-        {confirmationModal && (
+        {showConfirmationModal && (
           <WorkoutConfirmationModal
-            setConfirmationModal={setConfirmationModal}
+            closeConfirmationModal={closeConfirmationModal}
             handleSubmit={handleSubmit}
           />
         )}

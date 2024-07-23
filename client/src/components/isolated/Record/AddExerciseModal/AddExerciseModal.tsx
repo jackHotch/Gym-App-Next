@@ -8,15 +8,13 @@ import Searchbar from '@/components/reusable/Searchbar/Searchbar'
 import CloseIcon from '@mui/icons-material/Close'
 import CreateNewExerciseModal from '../CreateNewExerciseModal/CreateNewExerciseModal'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useToggle } from '@/hooks/useToggle'
 
-const AddExerciseModal = ({
-  openModal,
-  exercises,
-  setExercises,
-}: AddExerciseModalProps) => {
+const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseModalProps) => {
   const [allExercises, setAllExercises] = useState<IAllExercises[]>([])
   const [newExercises, setNewExercises] = useState<IExercises[]>([])
-  const [modal, setModal] = useState<boolean>(false)
+  const [showCreateExerciseModal, _, openCreateExerciseModal, closeCreateExerciseModal] =
+    useToggle()
   const [exercisesChanged, setExercisesChanged] = useState<boolean>(false)
 
   const modalVariants = {
@@ -39,21 +37,17 @@ const AddExerciseModal = ({
     },
   }
 
-  function closeModal() {
-    openModal(false)
-  }
-
-  function removeExercise(i: number) {
+  const removeExercise = (i: number) => {
     const temp = [...newExercises]
     temp.splice(i, 1)
     setNewExercises(temp)
   }
 
-  function addExercises() {
+  const addExercises = () => {
     let temp = [...exercises]
     temp = temp.concat(newExercises)
     setExercises(temp)
-    openModal(false)
+    closeModal()
   }
 
   useEffect(() => {
@@ -74,7 +68,7 @@ const AddExerciseModal = ({
         exit='exit'
       >
         <div className={styles.header}>
-          <button className={styles.create_exercise} onClick={() => setModal(true)}>
+          <button className={styles.create_exercise} onClick={openCreateExerciseModal}>
             Create New Exercise
           </button>
           <button onClick={closeModal}>
@@ -95,10 +89,7 @@ const AddExerciseModal = ({
             return (
               <div key={key} className={styles.future_exercise}>
                 {value.name}
-                <span
-                  className={styles.exercises_clear_btn}
-                  onClick={() => removeExercise(key)}
-                >
+                <span className={styles.exercises_clear_btn} onClick={() => removeExercise(key)}>
                   X
                 </span>
               </div>
@@ -113,14 +104,14 @@ const AddExerciseModal = ({
         </div>
       </motion.div>
 
-      <AnimatePresence>
-        {modal && (
+      {showCreateExerciseModal && (
+        <AnimatePresence>
           <CreateNewExerciseModal
-            setModal={setModal}
+            closeModal={closeCreateExerciseModal}
             setExercisesChanged={setExercisesChanged}
           />
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </div>
   )
 }
