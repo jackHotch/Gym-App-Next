@@ -6,7 +6,7 @@ import { WeightListProps } from '@/app/weight/Weight'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddWeightModal from '../AddWeightModal/AddWeightModal'
 import EntryModal from '../EntryModal/EntryModal'
-import { useToggle } from '@/hooks/useToggle/useToggle'
+import { useToggle } from '@/hooks/useToggle'
 import { useArrayToggle } from '@/hooks/useArrayToggle/useArrayToggle'
 
 const WeightList = ({ weight, setWeightChange }: WeightListProps) => {

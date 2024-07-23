@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useToggleType } from '../hooks'
+import { useToggleType } from './hooks'
 
 export const useToggle = (initialValue = false): useToggleType => {
   const [state, setState] = useState<boolean>(initialValue)

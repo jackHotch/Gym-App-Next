@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useArrayToggleType } from "../hooks"
+import { useArrayToggleType } from "./hooks"
 
 interface useArrayToggleProps {
   initialValue: boolean[]

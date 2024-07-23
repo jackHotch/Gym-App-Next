@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 import { DivEvent, FormEvent, TextInputChangeEvent } from '@/app/globals'
 
 const CreateNewExerciseModal = ({
-  setModal,
+  closeModal,
   setExercisesChanged,
 }: CreateNewExerciseModalProps) => {
   const [name, setName] = useState('')
@@ -34,16 +34,12 @@ const CreateNewExerciseModal = ({
     },
   }
 
-  function closeModal() {
-    setModal(false)
-  }
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
     axios.post('/api/exercises/create', { name }).then((res: AxiosResponse) => {
       console.log(res.data)
       setExercisesChanged(true)
-      setModal(false)
+      closeModal()
     })
   }
 

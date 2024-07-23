@@ -5,7 +5,7 @@ import styles from './WorkoutConfirmationModal.module.css'
 import { motion } from 'framer-motion'
 
 const WorkoutConfirmationModal = ({
-  setConfirmationModal,
+  closeConfirmationModal,
   handleSubmit,
 }: WorkoutConfirmationModalProps) => {
   const modalVariants = {
@@ -40,7 +40,7 @@ const WorkoutConfirmationModal = ({
         <h2>Are You Sure You Want to Finish Your Workout?</h2>
         <div className={styles.buttons}>
           <button onClick={(e) => handleSubmit(e)}>Finish Workout</button>
-          <button onClick={() => setConfirmationModal(false)}>Cancel</button>
+          <button onClick={closeConfirmationModal}>Cancel</button>
         </div>
       </motion.div>
     </div>
