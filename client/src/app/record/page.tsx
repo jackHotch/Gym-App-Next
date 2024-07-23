@@ -1,23 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { ICurrentSplit } from './record'
 import styles from './Record.module.css'
 import Link from 'next/link'
+import { useCurrentSplit } from '@/hooks/api/useCurrentSplit'
 
 const Record = () => {
-  const [splitName, setSplitName] = useState<ICurrentSplit>()
+  const { data: currentSplit } = useCurrentSplit()
 
-  useEffect(() => {
-    axios.get('/api/splits/current').then((res) => {
-      setSplitName(res.data)
-    })
-  }, [])
   return (
     <>
       <div>
-        <h2 className={styles.split_name}>{splitName?.name}</h2>
+        <h2 className={styles.split_name}>{currentSplit?.name}</h2>
       </div>
 
       <div className={styles.log_workout}>

@@ -60,7 +60,7 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
     axios.post('/api/weight', data).then((res) => {
       console.log('Weight Added')
       closeModal()
-      change(true)
+      change()
     })
   }
 

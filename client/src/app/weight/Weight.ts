@@ -1,18 +1,18 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react'
 import { IWeightData } from '../globals'
 
 export interface WeightListProps {
-  weight: IWeightData[],
-  setWeightChange: Dispatch<SetStateAction<boolean>>
+  weight: IWeightData[] | undefined
+  refresh: () => void
 }
 
 export interface EntryModalProps {
-  id: number,
-  change: Dispatch<SetStateAction<boolean>>,
+  id: number
+  change: () => void
   closeModal: (id: number) => void
 }
 
 export interface AddWeightModalProps {
-  closeModal: () => void,
-  change: Dispatch<SetStateAction<boolean>>,
+  closeModal: () => void
+  change: () => void
 }
