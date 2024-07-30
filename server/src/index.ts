@@ -1,8 +1,10 @@
 import express from 'express'
+import cors from 'cors'
 const app = express()
 const port = 8080
 
 app.use(express.json())
+app.use(cors())
 
 import exerciseRouter from './routes/Exercises.ts'
 app.use('/api/exercises', exerciseRouter)
