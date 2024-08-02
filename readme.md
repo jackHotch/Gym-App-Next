@@ -5,11 +5,13 @@ Created by Jack Hotchkiss
 Started: April 12th, 2024  
 Ended: Present
 
+![Screenshot](/assets/screenshot.png)
+
 ## About the Project
 
 ### Description
 
-This project is a web app to help users track their progress on their fitness journey. It has features such as
+This project is a web app to help users track their progress on their fitness journey. It has features such as...
 
 - Workout Tracking
 - Weight Tracking
