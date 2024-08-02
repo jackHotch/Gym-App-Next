@@ -3,15 +3,14 @@
 import styles from './EntryModal.module.css'
 import { EntryModalProps } from '@/app/weight/Weight.ts'
 import { motion } from 'framer-motion'
-import axios from 'axios'
+import { useDeleteWeight } from '@/hooks/api/useDeleteWeight'
 
-const EntryModal = ({ id, change, closeModal }: EntryModalProps) => {
+const EntryModal = ({ id, closeModal }: EntryModalProps) => {
+  const { mutate: deleteWeight } = useDeleteWeight()
+
   const deleteEntry = () => {
-    axios.delete(`/api/weight/${id}`).then((res) => {
-      console.log('Entry Deleted')
-      closeModal(id)
-      change()
-    })
+    deleteWeight(id)
+    closeModal(id)
   }
 
   return (

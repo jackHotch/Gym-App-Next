@@ -8,7 +8,7 @@ import EntryModal from '../EntryModal/EntryModal'
 import { useToggle } from '@/hooks/useToggle'
 import { useArrayToggle } from '@/hooks/useArrayToggle'
 
-const WeightList = ({ weight, refresh }: WeightListProps) => {
+const WeightList = ({ weight }: WeightListProps) => {
   const [isAWMVisible, _, openAWM, closeAWM] = useToggle()
   const arr: boolean[] = new Array(weight?.length).fill(false)
   const [isEntryVisible, toggleEntry, __, closeEntry] = useArrayToggle(arr)
@@ -45,7 +45,7 @@ const WeightList = ({ weight, refresh }: WeightListProps) => {
                 </span>
                 <div className={styles.entry_modal}>
                   {isEntryVisible[key] && (
-                    <EntryModal id={value.id} change={refresh} closeModal={closeEntry} />
+                    <EntryModal id={value.id} closeModal={closeEntry} />
                   )}
                 </div>
               </div>
@@ -54,7 +54,7 @@ const WeightList = ({ weight, refresh }: WeightListProps) => {
         </div>
       </div>
 
-      {isAWMVisible && <AddWeightModal closeModal={closeAWM} change={refresh} />}
+      {isAWMVisible && <AddWeightModal closeModal={closeAWM} />}
     </div>
   )
 }

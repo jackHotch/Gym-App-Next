@@ -23,3 +23,8 @@ export interface SearchbarProps {
   newExercise: IExercises[]
   setNewExercise: Dispatch<SetStateAction<IExercises[]>>
 }
+
+export interface IWeightEntry {
+  weight: string
+  date: string
+}

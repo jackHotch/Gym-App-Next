@@ -4,20 +4,21 @@ import { useRef, useState } from 'react'
 import styles from './AddWeightModal.module.css'
 import { AddWeightModalProps } from '@/app/weight/Weight'
 import { FormEvent, TextInputChangeEvent } from '@/app/globals'
-import axios from 'axios'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import CloseIcon from '@mui/icons-material/Close'
 import dayjs, { Dayjs } from 'dayjs'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useAddWeight } from '@/hooks/api/useAddWeight'
 
-const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
+const AddWeightModal = ({ closeModal }: AddWeightModalProps) => {
   const [calendar, setCalendar] = useState(false)
   const calendarRef = useRef<any>()
   const [weight, setWeight] = useState('')
   const d = convertDate(new Date())
   const [date, setDate] = useState<any>(dayjs(d))
+  const { mutate: addWeight } = useAddWeight()
 
   function convertDate(date: Date | Dayjs) {
     const newDate = date.toISOString().substring(0, 10)
@@ -30,11 +31,11 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
     return formattedDate
   }
 
-  function updateWeight(e: TextInputChangeEvent) {
+  const updateWeight = (e: TextInputChangeEvent) => {
     setWeight(e.target.value)
   }
 
-  function toggleCalendar() {
+  const toggleCalendar = () => {
     setCalendar(!calendar)
   }
 
@@ -53,15 +54,12 @@ const AddWeightModal = ({ closeModal, change }: AddWeightModalProps) => {
   //   }
   // })
 
-  function handleSubmit(e: FormEvent) {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const d = convertDate(date)
     const data = { weight: weight, date: d }
-    axios.post('/api/weight', data).then((res) => {
-      console.log('Weight Added')
-      closeModal()
-      change()
-    })
+    addWeight(data)
+    closeModal()
   }
 
   return (
