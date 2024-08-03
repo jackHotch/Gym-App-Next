@@ -3,12 +3,11 @@
 import styles from './WeightList.module.css'
 import { WeightListProps } from '@/app/weight/Weight'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import AddWeightModal from '../AddWeightModal/AddWeightModal'
-import EntryModal from '../EntryModal/EntryModal'
-import { useToggle } from '@/hooks/useToggle'
-import { useArrayToggle } from '@/hooks/useArrayToggle'
+import { AddWeightModal } from '../AddWeightModal'
+import { EntryModal } from '../EntryModal'
+import { useToggle, useArrayToggle } from '@/hooks'
 
-const WeightList = ({ weight }: WeightListProps) => {
+export const WeightList = ({ weight }: WeightListProps) => {
   const [isAWMVisible, _, openAWM, closeAWM] = useToggle()
   const arr: boolean[] = new Array(weight?.length).fill(false)
   const [isEntryVisible, toggleEntry, __, closeEntry] = useArrayToggle(arr)
@@ -58,5 +57,3 @@ const WeightList = ({ weight }: WeightListProps) => {
     </div>
   )
 }
-
-export default WeightList

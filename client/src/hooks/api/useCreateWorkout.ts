@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { createWorkout } from '@/api/workout'
+import { createWorkout } from '@/api'
 import { IWorkout } from '@/app/globals'
 import { useRouter } from 'next/navigation'
 

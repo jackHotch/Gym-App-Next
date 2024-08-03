@@ -2,7 +2,7 @@
 
 import styles from './Record.module.css'
 import Link from 'next/link'
-import { useCurrentSplit } from '@/hooks/api/useCurrentSplit'
+import { useCurrentSplit } from '@/hooks'
 
 const Record = () => {
   const { data: currentSplit } = useCurrentSplit()

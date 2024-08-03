@@ -10,9 +10,9 @@ import dayjs, { Dayjs } from 'dayjs'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { useAddWeight } from '@/hooks/api/useAddWeight'
+import { useAddWeight } from '@/hooks'
 
-const AddWeightModal = ({ closeModal }: AddWeightModalProps) => {
+export const AddWeightModal = ({ closeModal }: AddWeightModalProps) => {
   const [calendar, setCalendar] = useState(false)
   const calendarRef = useRef<any>()
   const [weight, setWeight] = useState('')
@@ -119,5 +119,3 @@ const AddWeightModal = ({ closeModal }: AddWeightModalProps) => {
     </LocalizationProvider>
   )
 }
-
-export default AddWeightModal

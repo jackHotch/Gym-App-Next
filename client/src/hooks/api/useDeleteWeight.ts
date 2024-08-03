@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteWeight } from '@/api/weight'
+import { deleteWeight } from '@/api'
 
 export const useDeleteWeight = () => {
   const queryClient = useQueryClient()

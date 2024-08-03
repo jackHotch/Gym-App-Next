@@ -2,7 +2,7 @@
 
 import styles from './Finished.module.css'
 import Link from 'next/link'
-import { useWorkoutNumber } from '@/hooks/api/useWorkoutNumber'
+import { useWorkoutNumber } from '@/hooks'
 
 const finished = () => {
   const { data: workoutNumber } = useWorkoutNumber()
