@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './Workout.module.css'
 import AddExerciseModal from '@/components/isolated/Record/AddExerciseModal/AddExerciseModal'
-import { IExercises } from '../record.ts'
+import { IWorkout } from '@/app/globals'
 import { TextInputChangeEvent, TextAreaChangeEvent, ButtonEvent } from '@/app/globals'
 import Set from '@/components/isolated/Record/Set/Set'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
@@ -14,23 +14,20 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle } from '@/hooks/useToggle.ts'
 import { useArrayToggle } from '@/hooks/useArrayToggle.ts'
+import { useWorkoutNumber } from '@/hooks/api/useWorkoutNumber.ts'
 
 const Workout = () => {
-  const [showAddExerciseModal, __, openAddExerciseModal, closeAddExerciseModal] = useToggle()
-  const [showConfirmationModal, _, openConfirmationModal, closeConfirmationModal] = useToggle()
-  const [exercises, setExercises] = useState<IExercises[]>([])
-  let arr = new Array(exercises.length).fill(false)
+  const [showAddExerciseModal, __, openAddExerciseModal, closeAddExerciseModal] =
+    useToggle()
+  const [showConfirmationModal, _, openConfirmationModal, closeConfirmationModal] =
+    useToggle()
+  const [workout, setWorkout] = useState<IWorkout[]>([])
+  let arr = new Array(workout.length).fill(false)
   const [showExerciseModal, toggleExerciseModal] = useArrayToggle(arr)
   const [showNotes, toggleNotes] = useArrayToggle(arr)
   const router = useRouter()
-  const [workoutNumber, setWorkoutNumber] = useState<number>(0)
-
-  useEffect(() => {
-    axios.get('/api/workout/number').then((res) => {
-      let temp = res.data
-      setWorkoutNumber(temp + 1)
-    })
-  }, [])
+  const { data, isLoading } = useWorkoutNumber()
+  const workoutNumber = isLoading ? null : data ? data + 1 : 0
 
   function handleChange(
     e: TextInputChangeEvent,
@@ -38,7 +35,7 @@ const Workout = () => {
     setIndex: number,
     name: string
   ) {
-    const temp = [...exercises]
+    const temp = [...workout]
     if (name === 'weight') {
       temp[exerciseIndex].sets[setIndex].weight = e.target.value
     } else if (name === 'reps') {
@@ -46,40 +43,44 @@ const Workout = () => {
     } else if (name === 'rpe') {
       temp[exerciseIndex].sets[setIndex].rpe = e.target.value
     }
-    setExercises(temp)
+    setWorkout(temp)
   }
 
   function addSet(index: number) {
-    const temp1 = [...exercises]
+    const temp1 = [...workout]
     temp1[index].sets.push({ weight: '', reps: '', rpe: '' })
-    setExercises(temp1)
+    setWorkout(temp1)
   }
 
   function handleSubmit(e: ButtonEvent) {
     e.preventDefault()
-    axios.post('/api/workout/create', exercises).then((res) => {
+    axios.post('/api/workout/create', workout).then((res) => {
       console.log('Workout Created')
       router.push('/record/workout/finished')
     })
   }
 
-  function changeNotes(e: TextAreaChangeEvent, defaultHeight: string, exerciseNumber: number) {
+  function changeNotes(
+    e: TextAreaChangeEvent,
+    defaultHeight: string,
+    exerciseNumber: number
+  ) {
     if (e) {
       e.target.style.height = defaultHeight
       e.target.style.height = `${e.target.scrollHeight}px`
     }
 
-    const temp = [...exercises]
+    const temp = [...workout]
     temp[exerciseNumber].notes = e.target.value
   }
 
   function removeSet(exerciseId: number, setId: number) {
-    let temp = [...exercises]
+    let temp = [...workout]
     const newSetList = temp[exerciseId].sets.filter((value, id) => {
       if (id !== setId) return value
     })
     temp[exerciseId].sets = newSetList
-    setExercises(temp)
+    setWorkout(temp)
   }
 
   return (
@@ -89,7 +90,7 @@ const Workout = () => {
           <h1 className={styles.title}>Workout #{workoutNumber}</h1>
           <div className={styles.exercises}>
             <AnimatePresence>
-              {exercises.map((value, key) => {
+              {workout.map((value, key) => {
                 return (
                   <motion.div
                     className={styles.single_exercise}
@@ -131,8 +132,8 @@ const Workout = () => {
                             ind={key}
                             showNote={showNotes[key]}
                             toggleNote={toggleNotes}
-                            exercises={exercises}
-                            setExercises={setExercises}
+                            exercises={workout}
+                            setExercises={setWorkout}
                           />
                         )}
                       </AnimatePresence>
@@ -188,13 +189,19 @@ const Workout = () => {
                         >
                           <textarea
                             placeholder='Notes...'
-                            onChange={(e: TextAreaChangeEvent) => changeNotes(e, '1px', key)}
+                            onChange={(e: TextAreaChangeEvent) =>
+                              changeNotes(e, '1px', key)
+                            }
                           ></textarea>
                         </motion.div>
                       )}
                     </AnimatePresence>
 
-                    <button className={styles.add_set} type='button' onClick={() => addSet(key)}>
+                    <button
+                      className={styles.add_set}
+                      type='button'
+                      onClick={() => addSet(key)}
+                    >
                       Add Set
                     </button>
                   </motion.div>
@@ -220,8 +227,8 @@ const Workout = () => {
         {showAddExerciseModal && (
           <AddExerciseModal
             closeModal={closeAddExerciseModal}
-            exercises={exercises}
-            setExercises={setExercises}
+            workout={workout}
+            setWorkout={setWorkout}
           />
         )}
         {showConfirmationModal && (

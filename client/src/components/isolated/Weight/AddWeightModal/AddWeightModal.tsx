@@ -18,7 +18,7 @@ const AddWeightModal = ({ closeModal }: AddWeightModalProps) => {
   const [weight, setWeight] = useState('')
   const d = convertDate(new Date())
   const [date, setDate] = useState<any>(dayjs(d))
-  const { mutate: addWeight } = useAddWeight()
+  const { mutate: addWeight, isPending } = useAddWeight()
 
   function convertDate(date: Date | Dayjs) {
     const newDate = date.toISOString().substring(0, 10)

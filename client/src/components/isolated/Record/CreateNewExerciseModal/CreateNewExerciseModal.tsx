@@ -7,12 +7,11 @@ import CloseIcon from '@mui/icons-material/Close'
 import axios, { AxiosResponse } from 'axios'
 import { motion } from 'framer-motion'
 import { DivEvent, FormEvent, TextInputChangeEvent } from '@/app/globals'
+import { useCreateExercise } from '@/hooks/api/useCreateExercise'
 
-const CreateNewExerciseModal = ({
-  closeModal,
-  setExercisesChanged,
-}: CreateNewExerciseModalProps) => {
+const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => {
   const [name, setName] = useState('')
+  const { mutate: createExercise } = useCreateExercise()
 
   const modalVariants = {
     hidden: {
@@ -36,11 +35,13 @@ const CreateNewExerciseModal = ({
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    axios.post('/api/exercises/create', { name }).then((res: AxiosResponse) => {
-      console.log(res.data)
-      setExercisesChanged(true)
-      closeModal()
-    })
+    createExercise(name)
+    closeModal()
+    // axios.post('/api/exercises/create', { name }).then((res: AxiosResponse) => {
+    //   console.log(res.data)
+    //   setExercisesChanged(true)
+    //   closeModal()
+    // })
   }
 
   function handleChange(e: TextInputChangeEvent) {
@@ -77,7 +78,7 @@ const CreateNewExerciseModal = ({
               value={name}
               onChange={(e) => handleChange(e)}
             />
-            <button type='submit' className={styles.create_exercise}>
+            <button type='submit' className={styles.create_exercise_btn}>
               Create
             </button>
           </div>

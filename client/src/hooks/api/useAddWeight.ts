@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addWeight } from '@/api/weight/api'
+import { addWeight } from '@/api/weight'
 import { IWeightEntry } from '@/app/globals'
 
 export const useAddWeight = () => {
@@ -9,6 +9,6 @@ export const useAddWeight = () => {
     mutationFn: (entry: IWeightEntry) => addWeight(entry),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['weight'] })
-    }
+    },
   })
 }

@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AddExerciseModalProps, IAllExercises, IExercises } from '@/app/record/record'
+import { AddExerciseModalProps } from '@/app/record/record'
+import { IWorkout } from '@/app/globals'
+import { IExercises } from '@/app/globals'
 import axios from 'axios'
 import styles from './AddExerciseModal.module.css'
 import Searchbar from '@/components/reusable/Searchbar/Searchbar'
@@ -9,13 +11,13 @@ import CloseIcon from '@mui/icons-material/Close'
 import CreateNewExerciseModal from '../CreateNewExerciseModal/CreateNewExerciseModal'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle } from '@/hooks/useToggle'
+import { useExercises } from '@/hooks/api/useExercises'
 
-const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseModalProps) => {
-  const [allExercises, setAllExercises] = useState<IAllExercises[]>([])
-  const [newExercises, setNewExercises] = useState<IExercises[]>([])
+const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalProps) => {
+  const [newExercises, setNewExercises] = useState<IWorkout[]>([])
   const [showCreateExerciseModal, _, openCreateExerciseModal, closeCreateExerciseModal] =
     useToggle()
-  const [exercisesChanged, setExercisesChanged] = useState<boolean>(false)
+  const { data: exercises } = useExercises()
 
   const modalVariants = {
     hidden: {
@@ -44,18 +46,18 @@ const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseMo
   }
 
   const addExercises = () => {
-    let temp = [...exercises]
+    let temp = [...workout]
     temp = temp.concat(newExercises)
-    setExercises(temp)
+    setWorkout(temp)
     closeModal()
   }
 
-  useEffect(() => {
-    axios.get('/api/exercises').then((res) => {
-      setAllExercises(res.data)
-      setExercisesChanged(false)
-    })
-  }, [exercisesChanged])
+  // useEffect(() => {
+  //   axios.get('/api/exercises').then((res) => {
+  //     setExercises(res.data)
+  //     setExercisesChanged(false)
+  //   })
+  // }, [exercisesChanged])
 
   return (
     <div className={styles.modal_background} onClick={closeModal}>
@@ -79,7 +81,7 @@ const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseMo
         <div className={styles.textbox}>
           <Searchbar
             placeholder='Add Exercise'
-            data={allExercises}
+            data={exercises}
             newExercise={newExercises}
             setNewExercise={setNewExercises}
           />
@@ -89,7 +91,10 @@ const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseMo
             return (
               <div key={key} className={styles.future_exercise}>
                 {value.name}
-                <span className={styles.exercises_clear_btn} onClick={() => removeExercise(key)}>
+                <span
+                  className={styles.exercises_clear_btn}
+                  onClick={() => removeExercise(key)}
+                >
                   X
                 </span>
               </div>
@@ -106,10 +111,7 @@ const AddExerciseModal = ({ closeModal, exercises, setExercises }: AddExerciseMo
 
       {showCreateExerciseModal && (
         <AnimatePresence>
-          <CreateNewExerciseModal
-            closeModal={closeCreateExerciseModal}
-            setExercisesChanged={setExercisesChanged}
-          />
+          <CreateNewExerciseModal closeModal={closeCreateExerciseModal} />
         </AnimatePresence>
       )}
     </div>

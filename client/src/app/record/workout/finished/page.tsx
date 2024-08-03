@@ -1,18 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import styles from './Finished.module.css'
 import Link from 'next/link'
-import axios from 'axios'
+import { useWorkoutNumber } from '@/hooks/api/useWorkoutNumber'
 
 const finished = () => {
-  const [workoutNumber, setWorkoutNumber] = useState<number>(0)
-
-  useEffect(() => {
-    axios.get('/api/workout/number').then((res) => {
-      setWorkoutNumber(res.data)
-    })
-  }, [])
+  const { data: workoutNumber } = useWorkoutNumber()
 
   return (
     <div className={styles.created}>
