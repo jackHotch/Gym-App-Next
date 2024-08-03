@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { IExercises, IAllExercises } from './record/record'
+import { ISet } from './record/record'
 
 export type FormEvent = React.FormEvent<HTMLFormElement>
 export type ButtonEvent = React.MouseEvent<HTMLButtonElement>
@@ -19,12 +19,25 @@ export interface ChartProps {
 
 export interface SearchbarProps {
   placeholder: string
-  data: IAllExercises[]
-  newExercise: IExercises[]
-  setNewExercise: Dispatch<SetStateAction<IExercises[]>>
+  data: IExercises[] | undefined
+  newExercise: IWorkout[]
+  setNewExercise: Dispatch<SetStateAction<IWorkout[]>>
 }
 
 export interface IWeightEntry {
   weight: string
   date: string
+}
+
+export interface IExercises {
+  id: number
+  name: string
+  icon: null
+  created_at: Date
+}
+
+export interface IWorkout {
+  name: string
+  notes: string
+  sets: ISet[]
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { SearchbarProps, TextInputChangeEvent } from '@/app/globals'
-import { IAllExercises } from '@/app/record/record'
+import { IExercises } from '@/app/globals'
 import styles from './Searchbar.module.css'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
@@ -13,14 +13,14 @@ const Searchbar = ({
   newExercise,
   setNewExercise,
 }: SearchbarProps) => {
-  const [filteredData, setFilteredData] = useState<IAllExercises[]>([])
+  const [filteredData, setFilteredData] = useState<IExercises[] | undefined>([])
   const [wordEntered, setWordEntered] = useState<string>('')
   let searchRef = useRef<any>()
 
   function handleFilter(e: TextInputChangeEvent) {
     const searchWord = e.target.value
     setWordEntered(searchWord)
-    const newFilter = data.filter((value) => {
+    const newFilter = data?.filter((value) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase())
     })
     if (searchWord === '') setFilteredData([])
@@ -69,9 +69,9 @@ const Searchbar = ({
           )}
         </div>
       </div>
-      {filteredData.length != 0 && (
+      {filteredData?.length != 0 && (
         <div className={styles.data}>
-          {filteredData.map((value, key) => {
+          {filteredData?.map((value, key) => {
             return (
               <div
                 className={styles.data_item}

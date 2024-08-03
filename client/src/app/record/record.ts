@@ -1,14 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
-import { ButtonEvent, TextInputChangeEvent } from '../globals'
+import { ButtonEvent, IWorkout, TextInputChangeEvent } from '../globals'
 
 export interface ICurrentSplit {
   name: string
-}
-
-export interface IExercises {
-  name: string
-  notes: string
-  sets: ISet[]
 }
 
 export interface ISet {
@@ -19,20 +13,12 @@ export interface ISet {
 
 export interface AddExerciseModalProps {
   closeModal: () => void
-  exercises: IExercises[]
-  setExercises: Dispatch<SetStateAction<IExercises[]>>
-}
-
-export interface IAllExercises {
-  id: number
-  name: string
-  icon: null
-  created_at: Date
+  workout: IWorkout[]
+  setWorkout: Dispatch<SetStateAction<IWorkout[]>>
 }
 
 export interface CreateNewExerciseModalProps {
   closeModal: () => void
-  setExercisesChanged: Dispatch<SetStateAction<boolean>>
 }
 
 type ThandleChange = (a: TextInputChangeEvent, b: number, c: number, d: string) => void
@@ -54,11 +40,11 @@ export interface ExerciseModalProps {
   ind: number
   showNote: boolean
   toggleNote: (i: number) => void
-  exercises: IExercises[]
-  setExercises: Dispatch<SetStateAction<IExercises[]>>
+  exercises: IWorkout[]
+  setExercises: Dispatch<SetStateAction<IWorkout[]>>
 }
 
 export interface WorkoutConfirmationModalProps {
-  closeConfirmationModal: () =>  void
+  closeConfirmationModal: () => void
   handleSubmit: (e: ButtonEvent) => void
 }

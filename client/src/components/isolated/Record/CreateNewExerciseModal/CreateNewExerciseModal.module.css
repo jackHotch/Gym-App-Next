@@ -37,7 +37,8 @@
   text-align: center;
 }
 
-.create_exercise {
+.create_exercise_btn {
+  cursor: pointer;
   border: none;
   background-color: var(--blue);
   border-radius: 10px;
