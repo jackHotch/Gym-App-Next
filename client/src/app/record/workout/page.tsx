@@ -8,13 +8,12 @@ import { TextInputChangeEvent, TextAreaChangeEvent, ButtonEvent } from '@/app/gl
 import Set from '@/components/isolated/Record/Set/Set'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import ExerciseModal from '@/components/isolated/Record/ExerciseModal/ExerciseModal'
-import axios from 'axios'
 import WorkoutConfirmationModal from '@/components/isolated/Record/WorkoutConfirmationModal/WorkoutConfirmationModal.tsx'
-import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle } from '@/hooks/useToggle.ts'
 import { useArrayToggle } from '@/hooks/useArrayToggle.ts'
 import { useWorkoutNumber } from '@/hooks/api/useWorkoutNumber.ts'
+import { useCreateWorkout } from '@/hooks/api/useCreateWorkout'
 
 const Workout = () => {
   const [showAddExerciseModal, __, openAddExerciseModal, closeAddExerciseModal] =
@@ -25,16 +24,16 @@ const Workout = () => {
   let arr = new Array(workout.length).fill(false)
   const [showExerciseModal, toggleExerciseModal] = useArrayToggle(arr)
   const [showNotes, toggleNotes] = useArrayToggle(arr)
-  const router = useRouter()
   const { data, isLoading } = useWorkoutNumber()
   const workoutNumber = isLoading ? null : data ? data + 1 : 0
+  const { mutate: createWorkout, status } = useCreateWorkout()
 
-  function handleChange(
+  const handleChange = (
     e: TextInputChangeEvent,
     exerciseIndex: number,
     setIndex: number,
     name: string
-  ) {
+  ) => {
     const temp = [...workout]
     if (name === 'weight') {
       temp[exerciseIndex].sets[setIndex].weight = e.target.value
@@ -46,25 +45,22 @@ const Workout = () => {
     setWorkout(temp)
   }
 
-  function addSet(index: number) {
+  const addSet = (index: number) => {
     const temp1 = [...workout]
     temp1[index].sets.push({ weight: '', reps: '', rpe: '' })
     setWorkout(temp1)
   }
 
-  function handleSubmit(e: ButtonEvent) {
+  const handleSubmit = (e: ButtonEvent) => {
     e.preventDefault()
-    axios.post('/api/workout/create', workout).then((res) => {
-      console.log('Workout Created')
-      router.push('/record/workout/finished')
-    })
+    createWorkout(workout)
   }
 
-  function changeNotes(
+  const changeNotes = (
     e: TextAreaChangeEvent,
     defaultHeight: string,
     exerciseNumber: number
-  ) {
+  ) => {
     if (e) {
       e.target.style.height = defaultHeight
       e.target.style.height = `${e.target.scrollHeight}px`
@@ -74,7 +70,7 @@ const Workout = () => {
     temp[exerciseNumber].notes = e.target.value
   }
 
-  function removeSet(exerciseId: number, setId: number) {
+  const removeSet = (exerciseId: number, setId: number) => {
     let temp = [...workout]
     const newSetList = temp[exerciseId].sets.filter((value, id) => {
       if (id !== setId) return value

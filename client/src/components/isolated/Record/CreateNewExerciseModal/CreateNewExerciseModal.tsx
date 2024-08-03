@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { CreateNewExerciseModalProps } from '@/app/record/record'
 import styles from './CreateNewExerciseModal.module.css'
 import CloseIcon from '@mui/icons-material/Close'
-import axios, { AxiosResponse } from 'axios'
 import { motion } from 'framer-motion'
 import { DivEvent, FormEvent, TextInputChangeEvent } from '@/app/globals'
 import { useCreateExercise } from '@/hooks/api/useCreateExercise'
@@ -37,11 +36,6 @@ const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => 
     e.preventDefault()
     createExercise(name)
     closeModal()
-    // axios.post('/api/exercises/create', { name }).then((res: AxiosResponse) => {
-    //   console.log(res.data)
-    //   setExercisesChanged(true)
-    //   closeModal()
-    // })
   }
 
   function handleChange(e: TextInputChangeEvent) {

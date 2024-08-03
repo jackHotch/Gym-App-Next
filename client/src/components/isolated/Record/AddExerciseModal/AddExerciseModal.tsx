@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { AddExerciseModalProps } from '@/app/record/record'
 import { IWorkout } from '@/app/globals'
-import { IExercises } from '@/app/globals'
-import axios from 'axios'
 import styles from './AddExerciseModal.module.css'
 import Searchbar from '@/components/reusable/Searchbar/Searchbar'
 import CloseIcon from '@mui/icons-material/Close'
@@ -51,13 +49,6 @@ const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalP
     setWorkout(temp)
     closeModal()
   }
-
-  // useEffect(() => {
-  //   axios.get('/api/exercises').then((res) => {
-  //     setExercises(res.data)
-  //     setExercisesChanged(false)
-  //   })
-  // }, [exercisesChanged])
 
   return (
     <div className={styles.modal_background} onClick={closeModal}>
