@@ -10,10 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import ExerciseModal from '@/components/isolated/Record/ExerciseModal/ExerciseModal'
 import WorkoutConfirmationModal from '@/components/isolated/Record/WorkoutConfirmationModal/WorkoutConfirmationModal.tsx'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useToggle } from '@/hooks/useToggle.ts'
-import { useArrayToggle } from '@/hooks/useArrayToggle.ts'
-import { useWorkoutNumber } from '@/hooks/api/useWorkoutNumber.ts'
-import { useCreateWorkout } from '@/hooks/api/useCreateWorkout'
+import { useToggle, useArrayToggle, useWorkoutNumber, useCreateWorkout } from '@/hooks'
 
 const Workout = () => {
   const [showAddExerciseModal, __, openAddExerciseModal, closeAddExerciseModal] =
@@ -26,7 +23,7 @@ const Workout = () => {
   const [showNotes, toggleNotes] = useArrayToggle(arr)
   const { data, isLoading } = useWorkoutNumber()
   const workoutNumber = isLoading ? null : data ? data + 1 : 0
-  const { mutate: createWorkout, status } = useCreateWorkout()
+  const { mutate: createWorkout } = useCreateWorkout()
 
   const handleChange = (
     e: TextInputChangeEvent,

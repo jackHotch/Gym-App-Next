@@ -3,9 +3,9 @@
 import styles from './EntryModal.module.css'
 import { EntryModalProps } from '@/app/weight/Weight.ts'
 import { motion } from 'framer-motion'
-import { useDeleteWeight } from '@/hooks/api/useDeleteWeight'
+import { useDeleteWeight } from '@/hooks'
 
-const EntryModal = ({ id, closeModal }: EntryModalProps) => {
+export const EntryModal = ({ id, closeModal }: EntryModalProps) => {
   const { mutate: deleteWeight } = useDeleteWeight()
 
   const deleteEntry = () => {
@@ -25,5 +25,3 @@ const EntryModal = ({ id, closeModal }: EntryModalProps) => {
     </motion.div>
   )
 }
-
-export default EntryModal

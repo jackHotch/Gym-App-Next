@@ -6,7 +6,7 @@ import styles from './CreateNewExerciseModal.module.css'
 import CloseIcon from '@mui/icons-material/Close'
 import { motion } from 'framer-motion'
 import { DivEvent, FormEvent, TextInputChangeEvent } from '@/app/globals'
-import { useCreateExercise } from '@/hooks/api/useCreateExercise'
+import { useCreateExercise } from '@/hooks'
 
 const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => {
   const [name, setName] = useState('')

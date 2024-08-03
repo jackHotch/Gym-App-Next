@@ -8,8 +8,7 @@ import Searchbar from '@/components/reusable/Searchbar/Searchbar'
 import CloseIcon from '@mui/icons-material/Close'
 import CreateNewExerciseModal from '../CreateNewExerciseModal/CreateNewExerciseModal'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useToggle } from '@/hooks/useToggle'
-import { useExercises } from '@/hooks/api/useExercises'
+import { useToggle, useExercises } from '@/hooks'
 
 const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalProps) => {
   const [newExercises, setNewExercises] = useState<IWorkout[]>([])

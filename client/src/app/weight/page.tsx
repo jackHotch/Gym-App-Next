@@ -1,9 +1,9 @@
 'use client'
 
 import styles from './Weight.module.css'
-import WeightList from '@/components/isolated/Weight/WeightList/WeightList.tsx'
+import { WeightList } from '@/components/isolated/Weight'
 import Chart from '@/components/reusable/Chart/Chart'
-import { useWeight } from '@/hooks/api/useWeight'
+import { useWeight } from '@/hooks'
 
 const Weight = () => {
   const { data } = useWeight()

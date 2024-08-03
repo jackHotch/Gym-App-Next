@@ -1,4 +1,4 @@
-import { getWeight } from '@/api/weight'
+import { getWeight } from '@/api'
 import { useQuery } from '@tanstack/react-query'
 
 export const useWeight = () => {
