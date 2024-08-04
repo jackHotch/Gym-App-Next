@@ -2,13 +2,15 @@
 
 import { useState } from 'react'
 import styles from './Workout.module.css'
-import AddExerciseModal from '@/components/isolated/Record/AddExerciseModal/AddExerciseModal'
+import {
+  AddExerciseModal,
+  ExerciseModal,
+  Set,
+  WorkoutConfirmationModal,
+} from '@/components/isolated/Record'
 import { IWorkout } from '@/app/globals'
 import { TextInputChangeEvent, TextAreaChangeEvent, ButtonEvent } from '@/app/globals'
-import Set from '@/components/isolated/Record/Set/Set'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import ExerciseModal from '@/components/isolated/Record/ExerciseModal/ExerciseModal'
-import WorkoutConfirmationModal from '@/components/isolated/Record/WorkoutConfirmationModal/WorkoutConfirmationModal.tsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle, useArrayToggle, useWorkoutNumber, useCreateWorkout } from '@/hooks'
 

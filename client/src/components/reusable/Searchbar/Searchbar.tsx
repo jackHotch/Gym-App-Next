@@ -7,7 +7,7 @@ import styles from './Searchbar.module.css'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 
-const Searchbar = ({
+export const Searchbar = ({
   placeholder,
   data,
   newExercise,
@@ -87,5 +87,3 @@ const Searchbar = ({
     </div>
   )
 }
-
-export default Searchbar

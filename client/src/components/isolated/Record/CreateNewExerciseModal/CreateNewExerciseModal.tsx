@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 import { DivEvent, FormEvent, TextInputChangeEvent } from '@/app/globals'
 import { useCreateExercise } from '@/hooks'
 
-const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => {
+export const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => {
   const [name, setName] = useState('')
   const { mutate: createExercise } = useCreateExercise()
 
@@ -81,5 +81,3 @@ const CreateNewExerciseModal = ({ closeModal }: CreateNewExerciseModalProps) => 
     </div>
   )
 }
-
-export default CreateNewExerciseModal

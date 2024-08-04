@@ -4,7 +4,13 @@ import { SetProps } from '@/app/record/record'
 import styles from './Set.module.css'
 import { motion } from 'framer-motion'
 
-const Set = ({ value, exerciseNumber, setNumber, handleChange, removeSet }: SetProps) => {
+export const Set = ({
+  value,
+  exerciseNumber,
+  setNumber,
+  handleChange,
+  removeSet,
+}: SetProps) => {
   function deleteSet() {
     removeSet(exerciseNumber, setNumber)
   }
@@ -62,5 +68,3 @@ const Set = ({ value, exerciseNumber, setNumber, handleChange, removeSet }: SetP
     </motion.div>
   )
 }
-
-export default Set

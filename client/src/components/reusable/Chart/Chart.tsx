@@ -26,7 +26,7 @@ ChartJS.register(
 
 ChartJS.defaults.maintainAspectRatio = false
 
-const Chart = ({ weight }: ChartProps) => {
+export const Chart = ({ weight }: ChartProps) => {
   let labels: string[] = []
   let data: number[] = []
 
@@ -64,5 +64,3 @@ const Chart = ({ weight }: ChartProps) => {
     </div>
   )
 }
-
-export default Chart
