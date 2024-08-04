@@ -5,7 +5,7 @@ import { motion, useAnimation } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const Navbar = () => {
+export const Navbar = () => {
   const control1 = useAnimation()
   const control2 = useAnimation()
   const control3 = useAnimation()
@@ -70,5 +70,3 @@ const Navbar = () => {
     </nav>
   )
 }
-
-export default Navbar

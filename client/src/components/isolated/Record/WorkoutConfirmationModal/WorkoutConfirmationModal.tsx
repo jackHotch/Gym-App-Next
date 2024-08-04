@@ -4,7 +4,7 @@ import { WorkoutConfirmationModalProps } from '@/app/record/record'
 import styles from './WorkoutConfirmationModal.module.css'
 import { motion } from 'framer-motion'
 
-const WorkoutConfirmationModal = ({
+export const WorkoutConfirmationModal = ({
   closeConfirmationModal,
   handleSubmit,
 }: WorkoutConfirmationModalProps) => {
@@ -46,5 +46,3 @@ const WorkoutConfirmationModal = ({
     </div>
   )
 }
-
-export default WorkoutConfirmationModal

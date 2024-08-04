@@ -5,7 +5,7 @@ import { ExerciseModalProps } from '@/app/record/record'
 import styles from './ExerciseModal.module.css'
 import { motion } from 'framer-motion'
 
-const ExerciseModal = ({
+export const ExerciseModal = ({
   showExerciseModal,
   toggleExerciseModal,
   ind,
@@ -82,5 +82,3 @@ const ExerciseModal = ({
     </motion.div>
   )
 }
-
-export default ExerciseModal

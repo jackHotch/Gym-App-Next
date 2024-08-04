@@ -6,11 +6,15 @@ import { IWorkout } from '@/app/globals'
 import styles from './AddExerciseModal.module.css'
 import Searchbar from '@/components/reusable/Searchbar/Searchbar'
 import CloseIcon from '@mui/icons-material/Close'
-import CreateNewExerciseModal from '../CreateNewExerciseModal/CreateNewExerciseModal'
+import { CreateNewExerciseModal } from '../CreateNewExerciseModal'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle, useExercises } from '@/hooks'
 
-const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalProps) => {
+export const AddExerciseModal = ({
+  closeModal,
+  workout,
+  setWorkout,
+}: AddExerciseModalProps) => {
   const [newExercises, setNewExercises] = useState<IWorkout[]>([])
   const [showCreateExerciseModal, _, openCreateExerciseModal, closeCreateExerciseModal] =
     useToggle()
@@ -107,5 +111,3 @@ const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalP
     </div>
   )
 }
-
-export default AddExerciseModal
