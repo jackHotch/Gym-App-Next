@@ -3,7 +3,6 @@
 import styles from './Navbar.module.css'
 import { motion, useAnimation } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const Navbar = () => {
   const control1 = useAnimation()

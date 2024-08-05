@@ -1,5 +1,5 @@
 import './globals.css'
-import Navbar from '../components/reusable/Navbar/Navbar'
+import { Navbar } from '../components/reusable'
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
 
 export const metadata = {

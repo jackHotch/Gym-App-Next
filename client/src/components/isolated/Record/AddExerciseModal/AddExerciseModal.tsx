@@ -4,17 +4,13 @@ import { useState } from 'react'
 import { AddExerciseModalProps } from '@/app/record/record'
 import { IWorkout } from '@/app/globals'
 import styles from './AddExerciseModal.module.css'
-import Searchbar from '@/components/reusable/Searchbar/Searchbar'
+import { Searchbar } from '@/components/reusable/Searchbar/Searchbar'
 import CloseIcon from '@mui/icons-material/Close'
 import { CreateNewExerciseModal } from '../CreateNewExerciseModal'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToggle, useExercises } from '@/hooks'
 
-export const AddExerciseModal = ({
-  closeModal,
-  workout,
-  setWorkout,
-}: AddExerciseModalProps) => {
+export const AddExerciseModal = ({ closeModal, workout, setWorkout }: AddExerciseModalProps) => {
   const [newExercises, setNewExercises] = useState<IWorkout[]>([])
   const [showCreateExerciseModal, _, openCreateExerciseModal, closeCreateExerciseModal] =
     useToggle()
@@ -85,10 +81,7 @@ export const AddExerciseModal = ({
             return (
               <div key={key} className={styles.future_exercise}>
                 {value.name}
-                <span
-                  className={styles.exercises_clear_btn}
-                  onClick={() => removeExercise(key)}
-                >
+                <span className={styles.exercises_clear_btn} onClick={() => removeExercise(key)}>
                   X
                 </span>
               </div>

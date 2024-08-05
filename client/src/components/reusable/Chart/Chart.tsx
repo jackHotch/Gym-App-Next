@@ -1,7 +1,7 @@
 import styles from './TestChart.module.css'
 import { ChartProps } from '@/app/globals'
 import { Line } from 'react-chartjs-2'
-import DateRangePicker from '../DateRangePicker/DateRangePicker'
+import { DateRangePicker } from '../DateRangePicker'
 import {
   Chart as ChartJS,
   CategoryScale,

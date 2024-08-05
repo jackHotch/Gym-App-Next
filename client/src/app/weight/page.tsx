@@ -2,7 +2,7 @@
 
 import styles from './Weight.module.css'
 import { WeightList } from '@/components/isolated/Weight'
-import Chart from '@/components/reusable/Chart/Chart'
+import { Chart } from '@/components/reusable/Chart/Chart'
 import { useWeight } from '@/hooks'
 
 const Weight = () => {
