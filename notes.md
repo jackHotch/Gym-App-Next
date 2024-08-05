@@ -6,6 +6,8 @@
 - Make the blue color slighly darker, more blue
 - Change the img by the brand name in the navbar to a lottie file that animates on hover
 
+- add pull request checklist
+
 ## Authentication
 
 - make `/` a home page that say something like "welcome to app..."
