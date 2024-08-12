@@ -1,3 +1,4 @@
 Pull Request Checklist
 
-- [ ] Make sure the app runs - `npm run dev`
+- [ ] App runs - `npm run dev`
+- [ ] CI test passes

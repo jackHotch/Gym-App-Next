@@ -14,15 +14,7 @@ import {
 } from 'chart.js'
 import { lineChartData } from './FAKEDATA'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-  Filler
-)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler)
 
 ChartJS.defaults.maintainAspectRatio = false
 
