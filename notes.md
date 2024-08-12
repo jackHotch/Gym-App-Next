@@ -7,6 +7,7 @@
 - Change the img by the brand name in the navbar to a lottie file that animates on hover
 
 - add pull request checklist
+- test for mobile
 
 ## Authentication
 
